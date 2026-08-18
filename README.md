@@ -1,32 +1,40 @@
-# React + TypeScript + Vite
+# Порядок 🌿
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Личное PWA-приложение для поддержания порядка в доме. Без стриков и давления —
+приложение само подбирает, что убрать сегодня, исходя из того, как давно убиралась
+каждая комната, сколько у тебя сил и времени.
 
-Currently, two official plugins are available:
+## Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Комнаты и задачи** — с подзадачами, сложностью, временем и периодичностью
+- **Чистота комнат** — автоматический расчёт того, насколько каждая комната "запустела"
+- **Дейлики с умным подбором** — 1–3 задачи в день по алгоритму скоринга
+  (срочность, просроченность, чистота комнаты, день недели, уровень энергии)
+- **Сценарии** — "Гости через час", "Одна задача", "Быстрая уборка",
+  "Генеральная", "После вечеринки", "Свободный режим", сезонные задачи
+- **Статистика** — задачи и время за неделю, выполняемость, чистота по комнатам
+- **Офлайн-режим** — кэш данных + очередь выполнений с доотправкой при появлении сети
+- **Напоминания** — локальные уведомления в заданное время
+- **Тёмная тема**, вибрация и звук при завершении, пауза-режим (отпуск/болезнь)
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19 · TypeScript · Vite · Tailwind CSS 4 · Supabase (Postgres) · vite-plugin-pwa
 
-## Expanding the Oxlint configuration
+## Локальный запуск
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+1. `npm install`
+2. Создай проект в Supabase и выполни SQL-схему (таблицы: `rooms`, `tasks`,
+   `subtasks`, `task_history`, `user_settings`, `daily_plans`)
+3. Создай `.env` по образцу (переменные — в настройках Supabase → API):
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+        VITE_SUPABASE_URL=https://xxxx.supabase.co
+        VITE_SUPABASE_ANON_KEY=твой_anon_key
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+4. `npm run dev`
+
+## Деплой
+
+Код живёт на GitHub, хостинг — Netlify (автосборка при пуше в `main`).
+Переменные `VITE_SUPABASE_URL` и `VITE_SUPABASE_ANON_KEY` продублированы
+в настройках окружения Netlify.

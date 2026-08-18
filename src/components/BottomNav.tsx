@@ -16,7 +16,7 @@ const items: { id: Screen; icon: LucideIcon; label: string }[] = [
 
 export default function BottomNav({ active, onChange }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-100 flex justify-around py-2 pb-4">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-100 flex justify-around pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))]">
       {items.map((item) => {
         const isActive = active === item.id
         const Icon = item.icon

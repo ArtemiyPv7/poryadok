@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { buildScenario, type ScenarioKind } from '../lib/scenarios'
 import { completeTask } from '../lib/daily'
@@ -22,12 +22,17 @@ export default function ScenarioRunScreen({
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    buildScenario(kind).then((res) => {
-      setTasks(res.tasks)
-      setLoading(false)
-    })
+  const load = useCallback(async () => {
+    setLoading(true)
+    setDoneIds(new Set())
+    const res = await buildScenario(kind)
+    setTasks(res.tasks)
+    setLoading(false)
   }, [kind])
+
+  useEffect(() => {
+    load()
+  }, [load])
 
   async function handleComplete(task: TaskWithSubtasks) {
     await completeTask(task)
@@ -81,11 +86,7 @@ export default function ScenarioRunScreen({
                 {done ? '✓' : ''}
               </button>
               <div className="flex-1 min-w-0">
-                <div
-                  className={`font-medium ${
-                    done ? 'text-neutral-500' : 'text-neutral-900'
-                  }`}
-                >
+                <div className={`font-medium ${done ? 'text-neutral-500' : 'text-neutral-900'}`}>
                   <span className={done ? 'strike-center' : ''}>{task.title}</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 items-center mt-1">
@@ -98,6 +99,15 @@ export default function ScenarioRunScreen({
             </div>
           )
         })
+      )}
+
+      {!loading && kind === 'one' && tasks.length > 0 && remaining.length === 0 && (
+        <button
+          onClick={load}
+          className="mt-3 w-full rounded-xl bg-forest-500 text-white font-semibold py-3 cursor-pointer active:scale-[0.99] transition"
+        >
+          Показать ещё одну
+        </button>
       )}
     </div>
   )

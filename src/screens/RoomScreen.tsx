@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import TaskCard from '../components/TaskCard'
 import TaskModal from '../components/TaskModal'
 import RoomIcon from '../components/RoomIcon'
-import { completeTask } from '../lib/daily'
+import { completeTask, isToday } from '../lib/daily'
 import { isOnline } from '../lib/offline'
 import { readCache } from '../lib/cache'
 import type { Room, TaskWithSubtasks } from '../types'
@@ -90,6 +90,7 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
           <TaskCard
             key={task.id}
             task={task}
+            done={isToday(task.last_completed_at)}
             onComplete={() => handleComplete(task)}
             onEdit={() => {
               setEditingTask(task)

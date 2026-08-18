@@ -22,9 +22,11 @@ function App() {
 
     const reminderTimer = setInterval(checkReminder, 60000)
 
-    const goOnline = () => {
+    const goOnline = async () => {
       setOnline(true)
-      flushPending()
+      await flushPending()
+      // Сообщаем экранам, что данные снова свежие
+      window.dispatchEvent(new Event('poryadok:synced'))
     }
     const goOffline = () => setOnline(false)
 
@@ -39,9 +41,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <div className="max-w-md mx-auto min-h-screen relative">
+      {/* pt-7, когда офлайн, чтобы баннер не перекрывал приветствие */}
+      <div className={`max-w-md mx-auto min-h-screen relative ${online ? '' : 'pt-7'}`}>
         {!online && (
-          <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md z-40 bg-accent-peach text-neutral-900 text-xs font-semibold text-center py-1.5">
+          <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md z-40 bg-accent-peach text-neutral-900 text-xs font-semibold text-center pb-1.5 pt-[calc(0.375rem+env(safe-area-inset-top))]">
             Офлайн — показываем сохранённые данные
           </div>
         )}

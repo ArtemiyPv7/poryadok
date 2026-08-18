@@ -61,11 +61,18 @@ src/
     TaskCard.tsx
     TaskModal.tsx
   lib/
+    cache.ts
     cleanliness.ts
     daily.ts
     difficulty.ts
+    energy.ts
+    offline.ts
+    reminder.ts
+    roomIcons.ts
     scenarios.ts
+    settings.ts
     supabase.ts
+    theme.ts
   screens/
     FreeModeScreen.tsx
     HomeScreen.tsx
@@ -218,7 +225,7 @@ export default function DailyTaskCard({
           onClick={onComplete}
           disabled={item.isCompleted}
           className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 mt-0.5 text-white text-sm transition cursor-pointer ${
-            item.isCompleted ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+            item.isCompleted ? 'bg-forest-500 border-forest-500 anim-pop' : 'border-neutral-300'
           }`}
         >
           {item.isCompleted ? '✓' : ''}
@@ -227,7 +234,7 @@ export default function DailyTaskCard({
         <div className="flex-1 min-w-0">
           <div
             className={`font-medium ${
-              item.isCompleted ? 'strike-center text-neutral-500' : 'text-neutral-900'
+              item.isCompleted ? 'text-neutral-500' : 'text-neutral-900'
             }`}
           >
             <span className={item.isCompleted ? 'strike-center' : ''}>
@@ -290,20 +297,9 @@ export default function DailyTaskCard({
 </file>
 
 <file path="src/components/EnergyModal.tsx">
-import { X, BatteryLow, BatteryMedium, BatteryFull } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { X } from 'lucide-react'
+import { ENERGY_OPTIONS } from '../lib/energy'
 import type { Energy } from '../lib/daily'
-
-export const ENERGY_OPTIONS: {
-  value: Energy
-  label: string
-  hint: string
-  icon: LucideIcon
-}[] = [
-  { value: 'low', label: 'Мало сил', hint: 'Лёгкие задачи, около 15 минут', icon: BatteryLow },
-  { value: 'normal', label: 'Нормально', hint: 'Сбалансированно, около 30 минут', icon: BatteryMedium },
-  { value: 'high', label: 'Много сил', hint: 'Возьмём и сложные, до 60 минут', icon: BatteryFull },
-]
 
 interface EnergyModalProps {
   current: Energy
@@ -314,11 +310,11 @@ interface EnergyModalProps {
 export default function EnergyModal({ current, onSelect, onClose }: EnergyModalProps) {
   return (
     <div
-      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center anim-fade"
       onClick={onClose}
     >
       <div
-        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6"
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 anim-sheet"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
@@ -378,7 +374,7 @@ export default function RoomCard({ room, cleanliness, onOpen, onEdit }: RoomCard
   return (
     <div
       onClick={onOpen}
-      className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3 cursor-pointer active:scale-[0.99] transition"
+      className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3 cursor-pointer active:scale-[0.99] transition anim-fade-up"
     >
       <div className="w-11 h-11 rounded-xl bg-forest-100 text-forest-700 flex items-center justify-center shrink-0">
         <RoomIcon icon={room.icon} />
@@ -420,41 +416,8 @@ export default function RoomCard({ room, cleanliness, onOpen, onEdit }: RoomCard
 </file>
 
 <file path="src/components/RoomIcon.tsx">
-import {
-  CookingPot, Bath, ShowerHead, Sofa, BedDouble, Baby,
-  DoorOpen, Laptop, TreePine, WashingMachine, Car, Sparkles,
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-
-export const ROOM_ICONS: Record<string, LucideIcon> = {
-  kitchen: CookingPot,
-  bath: Bath,
-  shower: ShowerHead,
-  living: Sofa,
-  bedroom: BedDouble,
-  kids: Baby,
-  hall: DoorOpen,
-  office: Laptop,
-  balcony: TreePine,
-  laundry: WashingMachine,
-  garage: Car,
-  other: Sparkles,
-}
-
-export const ROOM_ICON_LABELS: Record<string, string> = {
-  kitchen: 'Кухня',
-  bath: 'Ванная',
-  shower: 'Душ',
-  living: 'Гостиная',
-  bedroom: 'Спальня',
-  kids: 'Детская',
-  hall: 'Прихожая',
-  office: 'Кабинет',
-  balcony: 'Балкон',
-  laundry: 'Прачечная',
-  garage: 'Гараж',
-  other: 'Другое',
-}
+import { Sparkles } from 'lucide-react'
+import { ROOM_ICONS } from '../lib/roomIcons'
 
 interface RoomIconProps {
   icon: string
@@ -471,7 +434,7 @@ export default function RoomIcon({ icon, size = 22 }: RoomIconProps) {
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import RoomIcon, { ROOM_ICONS, ROOM_ICON_LABELS } from './RoomIcon'
+import { ROOM_ICONS, ROOM_ICON_LABELS } from '../lib/roomIcons'
 import type { Room } from '../types'
 
 interface RoomModalProps {
@@ -521,11 +484,11 @@ export default function RoomModal({ room, onClose, onSaved }: RoomModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center anim-fade"
       onClick={onClose}
     >
       <div
-        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6"
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 anim-sheet"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
@@ -673,7 +636,7 @@ export default function ScenarioRunScreen({
                 onClick={() => handleComplete(task)}
                 disabled={done}
                 className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
-                  done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                  done ? 'bg-forest-500 border-forest-500 anim-pop' : 'border-neutral-300'
                 }`}
               >
                 {done ? '✓' : ''}
@@ -681,7 +644,7 @@ export default function ScenarioRunScreen({
               <div className="flex-1 min-w-0">
                 <div
                   className={`font-medium ${
-                    done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                    done ? 'text-neutral-500' : 'text-neutral-900'
                   }`}
                 >
                   <span className={done ? 'strike-center' : ''}>{task.title}</span>
@@ -717,7 +680,7 @@ export default function TaskCard({ task, onComplete, onEdit }: TaskCardProps) {
   const info = difficultyInfo(task.difficulty)
 
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3">
+    <div className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3 anim-fade-up">
       <button
         onClick={onComplete}
         className="w-6 h-6 rounded-lg border-2 border-neutral-300 flex items-center justify-center shrink-0 text-white text-sm cursor-pointer hover:border-forest-500 transition"
@@ -871,11 +834,11 @@ export default function TaskModal({ room, task, onClose, onSaved }: TaskModalPro
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center anim-fade"
       onClick={onClose}
     >
       <div
-        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 max-h-[90vh] overflow-y-auto"
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 anim-sheet max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
@@ -1011,6 +974,40 @@ export default function TaskModal({ room, task, onClose, onSaved }: TaskModalPro
 }
 </file>
 
+<file path="src/lib/cache.ts">
+import type { Room, TaskWithSubtasks } from '../types'
+import type { DailyItem } from './daily'
+
+interface Snapshot {
+  rooms: Room[]
+  tasks: TaskWithSubtasks[]
+  daily: DailyItem[]
+  savedAt: string
+}
+
+const KEY = 'poryadok_cache_v1'
+
+export function readCache(): Snapshot | null {
+  try {
+    const raw = localStorage.getItem(KEY)
+    return raw ? (JSON.parse(raw) as Snapshot) : null
+  } catch {
+    return null
+  }
+}
+
+export function saveCache(partial: Partial<Snapshot>) {
+  const prev = readCache()
+  const next: Snapshot = {
+    rooms: partial.rooms ?? prev?.rooms ?? [],
+    tasks: partial.tasks ?? prev?.tasks ?? [],
+    daily: partial.daily ?? prev?.daily ?? [],
+    savedAt: new Date().toISOString(),
+  }
+  localStorage.setItem(KEY, JSON.stringify(next))
+}
+</file>
+
 <file path="src/lib/cleanliness.ts">
 import type { Task } from '../types'
 
@@ -1049,6 +1046,8 @@ export function cleanlinessTextClass(value: number): string {
 <file path="src/lib/daily.ts">
 import { supabase } from './supabase'
 import { computeRoomCleanliness } from './cleanliness'
+import { isOnline, queueComplete } from './offline'
+import { playCompleteEffects } from './settings'
 import type { Subtask, Task, TaskWithSubtasks } from '../types'
 
 export type Energy = 'low' | 'normal' | 'high'
@@ -1272,23 +1271,34 @@ export async function regenerateDailyPlan(energy: Energy): Promise<DailyItem[]> 
   return generate(energy, completedIds)
 }
 
-// Общая функция выполнения: задача + история + подзадачи + дейлик на сегодня
+// Общая функция выполнения: задача + история + подзадачи + дейлик на сегодня.
+// Без сети — откладываем операцию до появления подключения.
 export async function completeTask(task: Task): Promise<void> {
-  const now = new Date().toISOString()
   const today = localDateStr(0)
-  await Promise.all([
-    supabase.from('tasks').update({ last_completed_at: now }).eq('id', task.id),
-    supabase
-      .from('task_history')
-      .insert({ task_id: task.id, duration_minutes: task.duration_minutes }),
-    supabase.from('subtasks').update({ is_completed: true }).eq('task_id', task.id),
-    supabase
-      .from('daily_plans')
-      .update({ is_completed: true })
-      .eq('task_id', task.id)
-      .eq('plan_date', today),
-  ])
-  if ('vibrate' in navigator) navigator.vibrate(30)
+
+  if (isOnline()) {
+    const now = new Date().toISOString()
+    await Promise.all([
+      supabase.from('tasks').update({ last_completed_at: now }).eq('id', task.id),
+      supabase
+        .from('task_history')
+        .insert({ task_id: task.id, duration_minutes: task.duration_minutes }),
+      supabase.from('subtasks').update({ is_completed: true }).eq('task_id', task.id),
+      supabase
+        .from('daily_plans')
+        .update({ is_completed: true })
+        .eq('task_id', task.id)
+        .eq('plan_date', today),
+    ])
+  } else {
+    queueComplete({
+      taskId: task.id,
+      durationMinutes: task.duration_minutes,
+      planDate: today,
+    })
+  }
+
+  playCompleteEffects()
 }
 
 export async function toggleSubtask(subtask: Subtask): Promise<boolean> {
@@ -1329,6 +1339,177 @@ export const DIFFICULTIES: {
 
 export function difficultyInfo(value: Difficulty) {
   return DIFFICULTIES.find((d) => d.value === value) ?? DIFFICULTIES[0]
+}
+</file>
+
+<file path="src/lib/energy.ts">
+import { BatteryLow, BatteryMedium, BatteryFull } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import type { Energy } from './daily'
+
+export const ENERGY_OPTIONS: {
+  value: Energy
+  label: string
+  hint: string
+  icon: LucideIcon
+}[] = [
+  { value: 'low', label: 'Мало сил', hint: 'Лёгкие задачи, около 15 минут', icon: BatteryLow },
+  { value: 'normal', label: 'Нормально', hint: 'Сбалансированно, около 30 минут', icon: BatteryMedium },
+  { value: 'high', label: 'Много сил', hint: 'Возьмём и сложные, до 60 минут', icon: BatteryFull },
+]
+</file>
+
+<file path="src/lib/offline.ts">
+import { supabase } from './supabase'
+
+export function isOnline(): boolean {
+  return navigator.onLine
+}
+
+interface PendingComplete {
+  taskId: string
+  durationMinutes: number
+  planDate: string
+}
+
+const KEY = 'poryadok_pending_completes'
+
+function read(): PendingComplete[] {
+  try {
+    return JSON.parse(localStorage.getItem(KEY) ?? '[]') as PendingComplete[]
+  } catch {
+    return []
+  }
+}
+
+function write(list: PendingComplete[]) {
+  localStorage.setItem(KEY, JSON.stringify(list))
+}
+
+export function queueComplete(op: PendingComplete) {
+  write([...read(), op])
+}
+
+// Доотправляем отложенные выполнения при появлении сети
+export async function flushPending(): Promise<void> {
+  const list = read()
+  if (list.length === 0) return
+
+  const remaining: PendingComplete[] = []
+  for (const op of list) {
+    const now = new Date().toISOString()
+    const results = await Promise.all([
+      supabase.from('tasks').update({ last_completed_at: now }).eq('id', op.taskId),
+      supabase
+        .from('task_history')
+        .insert({ task_id: op.taskId, duration_minutes: op.durationMinutes }),
+      supabase.from('subtasks').update({ is_completed: true }).eq('task_id', op.taskId),
+      supabase
+        .from('daily_plans')
+        .update({ is_completed: true })
+        .eq('task_id', op.taskId)
+        .eq('plan_date', op.planDate),
+    ])
+    if (results.some((r) => r.error)) remaining.push(op)
+  }
+  write(remaining)
+}
+</file>
+
+<file path="src/lib/reminder.ts">
+import { supabase } from './supabase'
+import { getSettings } from './settings'
+
+function localDateStr(): string {
+  const d = new Date()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
+
+async function showNotification(title: string, body: string) {
+  if (!('Notification' in window)) return
+  if (Notification.permission !== 'granted') return
+
+  try {
+    const reg = await navigator.serviceWorker?.getRegistration()
+    if (reg) {
+      await reg.showNotification(title, { body, icon: '/icons/icon-192.png' })
+      return
+    }
+  } catch {
+    // переходим к обычному Notification ниже
+  }
+  new Notification(title, { body })
+}
+
+// Проверяем, пора ли напомнить о дейликах
+export async function checkReminder(): Promise<void> {
+  const settings = getSettings()
+  if (!settings) return
+  if (!settings.notifications_enabled) return
+
+  const today = localDateStr()
+  if (settings.paused_until !== null && settings.paused_until >= today) return
+
+  const now = new Date()
+  const [h, m] = (settings.reminder_time ?? '09:00').slice(0, 5).split(':').map(Number)
+  const reminderTime = new Date()
+  reminderTime.setHours(h, m, 0, 0)
+  if (now < reminderTime) return
+
+  // Уже напоминали сегодня — не спамим
+  const remindedKey = `poryadok_reminded_${today}`
+  if (localStorage.getItem(remindedKey)) return
+
+  const { data } = await supabase
+    .from('daily_plans')
+    .select('id, is_completed')
+    .eq('plan_date', today)
+    .eq('is_completed', false)
+
+  if (!data || data.length === 0) return
+
+  localStorage.setItem(remindedKey, '1')
+  await showNotification('Пора навести порядок 🌿', `Осталось задач: ${data.length}. Загляни в приложение!`)
+}
+</file>
+
+<file path="src/lib/roomIcons.ts">
+import {
+  CookingPot, Bath, ShowerHead, Sofa, BedDouble, Baby,
+  DoorOpen, Laptop, TreePine, WashingMachine, Car, Sparkles,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+export const ROOM_ICONS: Record<string, LucideIcon> = {
+  kitchen: CookingPot,
+  bath: Bath,
+  shower: ShowerHead,
+  living: Sofa,
+  bedroom: BedDouble,
+  kids: Baby,
+  hall: DoorOpen,
+  office: Laptop,
+  balcony: TreePine,
+  laundry: WashingMachine,
+  garage: Car,
+  other: Sparkles,
+}
+
+export const ROOM_ICON_LABELS: Record<string, string> = {
+  kitchen: 'Кухня',
+  bath: 'Ванная',
+  shower: 'Душ',
+  living: 'Гостиная',
+  bedroom: 'Спальня',
+  kids: 'Детская',
+  hall: 'Прихожая',
+  office: 'Кабинет',
+  balcony: 'Балкон',
+  laundry: 'Прачечная',
+  garage: 'Гараж',
+  other: 'Другое',
 }
 </file>
 
@@ -1418,6 +1599,56 @@ export async function buildScenario(kind: ScenarioKind): Promise<ScenarioResult>
 }
 </file>
 
+<file path="src/lib/settings.ts">
+import { supabase } from './supabase'
+import type { UserSettings } from '../types'
+
+let current: UserSettings | null = null
+
+export async function loadSettings(): Promise<UserSettings | null> {
+  const { data } = await supabase
+    .from('user_settings')
+    .select('*')
+    .limit(1)
+    .maybeSingle()
+  if (data) current = data as UserSettings
+  return current
+}
+
+export function setSettingsLocal(s: UserSettings) {
+  current = s
+}
+
+export function getSettings(): UserSettings | null {
+  return current
+}
+
+let audioCtx: AudioContext | null = null
+
+function playDing() {
+  try {
+    audioCtx = audioCtx ?? new AudioContext()
+    const o = audioCtx.createOscillator()
+    const g = audioCtx.createGain()
+    o.type = 'sine'
+    o.frequency.value = 880
+    g.gain.setValueAtTime(0.0001, audioCtx.currentTime)
+    g.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.02)
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3)
+    o.connect(g).connect(audioCtx.destination)
+    o.start()
+    o.stop(audioCtx.currentTime + 0.35)
+  } catch {
+    // звук недоступен — просто пропускаем
+  }
+}
+
+export function playCompleteEffects() {
+  if (current?.vibration_enabled && 'vibrate' in navigator) navigator.vibrate(30)
+  if (current?.sound_enabled) playDing()
+}
+</file>
+
 <file path="src/lib/supabase.ts">
 import { createClient } from '@supabase/supabase-js'
 
@@ -1429,6 +1660,17 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 </file>
 
+<file path="src/lib/theme.ts">
+// Применяет тему: класс .dark на <html> + цвет статус-бара
+export function applyTheme(dark: boolean) {
+  document.documentElement.classList.toggle('dark', dark)
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta) {
+    meta.setAttribute('content', dark ? '#0F1512' : '#0F2A1D')
+  }
+}
+</file>
+
 <file path="src/screens/FreeModeScreen.tsx">
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
@@ -1437,6 +1679,8 @@ import RoomIcon from '../components/RoomIcon'
 import { computeRoomCleanliness, cleanlinessTextClass } from '../lib/cleanliness'
 import { completeTask, isOverdue, taskPriority } from '../lib/daily'
 import { difficultyInfo } from '../lib/difficulty'
+import { isOnline } from '../lib/offline'
+import { readCache, saveCache } from '../lib/cache'
 import type { Difficulty, Room, TaskWithSubtasks } from '../types'
 
 type SortMode = 'priority' | 'fastest' | 'easiest'
@@ -1471,12 +1715,25 @@ export default function FreeModeScreen({ onBack }: FreeModeScreenProps) {
   const [sortMode, setSortMode] = useState<SortMode>('priority')
 
   async function loadAll() {
+    if (!isOnline()) {
+      const snap = readCache()
+      if (snap) {
+        setRooms(snap.rooms)
+        setTasks(snap.tasks)
+      }
+      setLoading(false)
+      return
+    }
+
     const [roomsRes, tasksRes] = await Promise.all([
       supabase.from('rooms').select('*'),
       supabase.from('tasks').select('*, subtasks(*)'),
     ])
-    setRooms((roomsRes.data ?? []) as Room[])
-    setTasks((tasksRes.data ?? []) as TaskWithSubtasks[])
+    const roomsData = (roomsRes.data ?? []) as Room[]
+    const tasksData = (tasksRes.data ?? []) as TaskWithSubtasks[]
+    setRooms(roomsData)
+    setTasks(tasksData)
+    saveCache({ rooms: roomsData, tasks: tasksData })
     setLoading(false)
   }
 
@@ -1587,7 +1844,7 @@ export default function FreeModeScreen({ onBack }: FreeModeScreenProps) {
                     onClick={() => handleComplete(task)}
                     disabled={done}
                     className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
-                      done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                      done ? 'bg-forest-500 border-forest-500 anim-pop' : 'border-neutral-300'
                     }`}
                   >
                     {done ? '✓' : ''}
@@ -1595,7 +1852,7 @@ export default function FreeModeScreen({ onBack }: FreeModeScreenProps) {
                   <div className="flex-1 min-w-0">
                     <div
                       className={`font-medium ${
-                        done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                        done ? 'text-neutral-500' : 'text-neutral-900'
                       }`}
                     >
                       <span className={done ? 'strike-center' : ''}>{task.title}</span>
@@ -1633,8 +1890,11 @@ import RoomCard from '../components/RoomCard'
 import RoomModal from '../components/RoomModal'
 import RoomScreen from './RoomScreen'
 import DailyTaskCard from '../components/DailyTaskCard'
-import EnergyModal, { ENERGY_OPTIONS } from '../components/EnergyModal'
+import EnergyModal from '../components/EnergyModal'
+import { ENERGY_OPTIONS } from '../lib/energy'
 import { computeRoomCleanliness } from '../lib/cleanliness'
+import { isOnline } from '../lib/offline'
+import { readCache, saveCache } from '../lib/cache'
 import {
   loadDailyPlan,
   regenerateDailyPlan,
@@ -1643,7 +1903,7 @@ import {
   type Energy,
   type DailyItem,
 } from '../lib/daily'
-import type { Room, Subtask, Task } from '../types'
+import type { Room, Subtask, Task, TaskWithSubtasks } from '../types'
 
 export default function HomeScreen() {
   const [rooms, setRooms] = useState<Room[]>([])
@@ -1659,29 +1919,52 @@ export default function HomeScreen() {
   const [editingRoom, setEditingRoom] = useState<Room | null>(null)
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null)
 
-  async function loadAll() {
-    const [roomsRes, tasksRes] = await Promise.all([
-      supabase.from('rooms').select('*'),
-      supabase.from('tasks').select('*'),
-    ])
-
-    const roomsData = (roomsRes.data ?? []) as Room[]
-    const tasksData = (tasksRes.data ?? []) as Task[]
-
+  function applyCleanliness(roomsData: Room[], tasksData: Task[]) {
     const map: Record<string, number | null> = {}
     for (const room of roomsData) {
       map[room.id] = computeRoomCleanliness(tasksData.filter((t) => t.room_id === room.id))
     }
+    setCleanliness(map)
+  }
+
+  async function loadAll() {
+    if (!isOnline()) {
+      const snap = readCache()
+      if (snap) {
+        setRooms(snap.rooms)
+        applyCleanliness(snap.rooms, snap.tasks)
+      }
+      setLoading(false)
+      return
+    }
+
+    const [roomsRes, tasksRes] = await Promise.all([
+      supabase.from('rooms').select('*'),
+      supabase.from('tasks').select('*, subtasks(*)'),
+    ])
+
+    const roomsData = (roomsRes.data ?? []) as Room[]
+    const tasksData = (tasksRes.data ?? []) as TaskWithSubtasks[]
 
     setRooms(roomsData)
-    setCleanliness(map)
+    applyCleanliness(roomsData, tasksData)
+    saveCache({ rooms: roomsData, tasks: tasksData })
     setLoading(false)
   }
 
   async function refreshDaily(regenerate: boolean, e: Energy) {
     setLoadingDaily(true)
+
+    if (!isOnline()) {
+      const snap = readCache()
+      if (snap) setDailyItems(snap.daily)
+      setLoadingDaily(false)
+      return
+    }
+
     const items = regenerate ? await regenerateDailyPlan(e) : await loadDailyPlan(e)
     setDailyItems(items)
+    saveCache({ daily: items })
     setLoadingDaily(false)
   }
 
@@ -1881,13 +2164,15 @@ export default function HomeScreen() {
 </file>
 
 <file path="src/screens/RoomScreen.tsx">
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft, Plus } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import TaskCard from '../components/TaskCard'
 import TaskModal from '../components/TaskModal'
 import RoomIcon from '../components/RoomIcon'
 import { completeTask } from '../lib/daily'
+import { isOnline } from '../lib/offline'
+import { readCache } from '../lib/cache'
 import type { Room, TaskWithSubtasks } from '../types'
 
 interface RoomScreenProps {
@@ -1902,7 +2187,14 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
   const [modalOpen, setModalOpen] = useState(false)
   const [editingTask, setEditingTask] = useState<TaskWithSubtasks | null>(null)
 
-  async function loadTasks() {
+  const loadTasks = useCallback(async () => {
+    if (!isOnline()) {
+      const snap = readCache()
+      if (snap) setTasks(snap.tasks.filter((t) => t.room_id === room.id))
+      setLoading(false)
+      return
+    }
+
     const { data, error } = await supabase
       .from('tasks')
       .select('*, subtasks(*)')
@@ -1911,11 +2203,11 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
 
     if (!error) setTasks((data ?? []) as TaskWithSubtasks[])
     setLoading(false)
-  }
+  }, [room.id])
 
   useEffect(() => {
     loadTasks()
-  }, [room.id])
+  }, [loadTasks])
 
   async function handleComplete(task: TaskWithSubtasks) {
     await completeTask(task)
@@ -2226,7 +2518,7 @@ export default function SeasonalScreen({ onBack }: SeasonalScreenProps) {
                 onClick={() => handleComplete(task)}
                 disabled={done}
                 className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
-                  done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                  done ? 'bg-forest-500 border-forest-500 anim-pop' : 'border-neutral-300'
                 }`}
               >
                 {done ? '✓' : ''}
@@ -2234,7 +2526,7 @@ export default function SeasonalScreen({ onBack }: SeasonalScreenProps) {
               <div className="flex-1 min-w-0">
                 <div
                   className={`font-medium ${
-                    done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                    done ? 'text-neutral-500' : 'text-neutral-900'
                   }`}
                 >
                   <span className={done ? 'strike-center' : ''}>{task.title}</span>
@@ -2264,17 +2556,180 @@ export default function SeasonalScreen({ onBack }: SeasonalScreenProps) {
 </file>
 
 <file path="src/screens/SettingsScreen.tsx">
+import { useEffect, useState } from 'react'
+import { applyTheme } from '../lib/theme'
+import type { ReactNode } from 'react'
+import { supabase } from '../lib/supabase'
+import { loadSettings, setSettingsLocal } from '../lib/settings'
+import type { UserSettings } from '../types'
+
+function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) {
+  return (
+    <button
+      onClick={onChange}
+      className={`w-11 h-7 rounded-full relative cursor-pointer transition-colors ${
+        on ? 'bg-forest-500' : 'bg-neutral-300'
+      }`}
+    >
+      <span
+        className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transition-transform ${
+          on ? 'translate-x-4' : ''
+        }`}
+      />
+    </button>
+  )
+}
+
+function Row({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="bg-white px-4 py-3.5 flex items-center justify-between border-b border-neutral-50 last:border-b-0">
+      <span className="text-sm text-neutral-900">{label}</span>
+      {children}
+    </div>
+  )
+}
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="mb-5">
+      <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wide mb-2 px-1">
+        {title}
+      </div>
+      <div className="rounded-2xl overflow-hidden shadow-sm">{children}</div>
+    </div>
+  )
+}
+
 export default function SettingsScreen() {
+  const [settings, setSettings] = useState<UserSettings | null>(null)
+
+  useEffect(() => {
+    loadSettings().then((s) => setSettings(s))
+  }, [])
+
+  async function update(patch: Partial<UserSettings>) {
+    if (!settings) return
+    const next = { ...settings, ...patch }
+    setSettings(next)
+    setSettingsLocal(next)
+    if (patch.dark_mode !== undefined) applyTheme(patch.dark_mode)
+    await supabase.from('user_settings').update(patch).eq('id', settings.id)
+  }
+
+  // При включении уведомлений сразу запрашиваем разрешение браузера
+  async function toggleNotifications() {
+    if (!settings) return
+    const turningOn = !settings.notifications_enabled
+    if (turningOn && 'Notification' in window && Notification.permission === 'default') {
+      await Notification.requestPermission()
+    }
+    update({ notifications_enabled: turningOn })
+  }
+
+  const todayStr = new Date().toISOString().slice(0, 10)
+  const paused =
+    settings !== null && settings.paused_until !== null && settings.paused_until >= todayStr
+
+  async function togglePause() {
+    if (!settings) return
+    if (paused) {
+      await update({ paused_until: null })
+    } else {
+      const d = new Date()
+      d.setDate(d.getDate() + 1)
+      await update({ paused_until: d.toISOString().slice(0, 10) })
+    }
+  }
+
+  if (!settings) {
+    return (
+      <div className="px-5 pt-6">
+        <p className="text-sm text-neutral-500">Загружаем настройки…</p>
+      </div>
+    )
+  }
+
   return (
     <div className="px-5 pt-6">
       <p className="text-sm text-neutral-500 mb-1">Настройки</p>
       <h1 className="text-2xl font-semibold text-neutral-900 mb-5">Профиль</h1>
 
-      <div className="bg-white rounded-2xl p-5 shadow-sm">
-        <p className="text-sm text-neutral-500">
-          Уведомления, тёмная тема, пауза — этапы 11–12
-        </p>
+      <div
+        onClick={togglePause}
+        className="bg-white rounded-2xl p-4 shadow-sm mb-5 text-center cursor-pointer active:scale-[0.99] transition"
+      >
+        <div className={`text-sm font-semibold mb-1 ${paused ? 'text-forest-700' : 'text-accent-orange'}`}>
+          {paused ? '▶ Снять с паузы' : '⏸ Поставить на паузу'}
+        </div>
+        <div className="text-xs text-neutral-500">
+          {paused ? 'Напоминания снова включены' : 'Отпуск или болезнь — напоминания молчат до завтра'}
+        </div>
       </div>
+
+      <Section title="План на день">
+        <Row label="Сколько дейликов в день">
+          <div className="flex gap-1.5">
+            {[1, 2, 3].map((n) => (
+              <button
+                key={n}
+                onClick={() => update({ daily_tasks_count: n })}
+                className={`w-9 h-9 rounded-xl text-sm font-semibold cursor-pointer transition ${
+                  settings.daily_tasks_count === n
+                    ? 'bg-forest-500 text-white'
+                    : 'bg-neutral-50 text-neutral-500'
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        </Row>
+      </Section>
+
+      <Section title="Уведомления">
+        <Row label="Напоминание о дейликах">
+          <Toggle on={settings.notifications_enabled} onChange={toggleNotifications} />
+        </Row>
+        <Row label="Время напоминания">
+          <input
+            type="time"
+            value={settings.reminder_time?.slice(0, 5) ?? '09:00'}
+            onChange={(e) => update({ reminder_time: e.target.value })}
+            className="text-sm text-neutral-900 bg-neutral-50 rounded-lg px-2 py-1 outline-none"
+          />
+        </Row>
+        <Row label="Умные подсказки">
+          <Toggle
+            on={settings.smart_hints_enabled}
+            onChange={() => update({ smart_hints_enabled: !settings.smart_hints_enabled })}
+          />
+        </Row>
+      </Section>
+
+      <Section title="Эффекты">
+        <Row label="Вибро при завершении">
+          <Toggle
+            on={settings.vibration_enabled}
+            onChange={() => update({ vibration_enabled: !settings.vibration_enabled })}
+          />
+        </Row>
+        <Row label="Звук при завершении">
+          <Toggle
+            on={settings.sound_enabled}
+            onChange={() => update({ sound_enabled: !settings.sound_enabled })}
+          />
+        </Row>
+      </Section>
+
+      <Section title="Внешний вид">
+        <Row label="Тёмная тема">
+          <Toggle on={settings.dark_mode} onChange={() => update({ dark_mode: !settings.dark_mode })} />
+        </Row>
+      </Section>
+
+      <p className="text-[11px] text-neutral-500 text-center mb-4">
+        Тёмная тема заработает на этапе 12 — переключатель уже сохраняется.
+      </p>
     </div>
   )
 }
@@ -2514,21 +2969,54 @@ export interface TaskWithSubtasks extends Task {
 </file>
 
 <file path="src/App.tsx">
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BottomNav from './components/BottomNav'
 import HomeScreen from './screens/HomeScreen'
 import ScenariosScreen from './screens/ScenariosScreen'
 import StatsScreen from './screens/StatsScreen'
 import SettingsScreen from './screens/SettingsScreen'
+import { isOnline, flushPending } from './lib/offline'
+import { loadSettings } from './lib/settings'
+import { checkReminder } from './lib/reminder'
+import { applyTheme } from './lib/theme'
 import type { Screen } from './types'
 
 function App() {
   const [screen, setScreen] = useState<Screen>('home')
+  const [online, setOnline] = useState(isOnline())
+
+  useEffect(() => {
+    loadSettings().then((s) => {
+      applyTheme(s?.dark_mode ?? false)
+      checkReminder()
+    })
+
+    const reminderTimer = setInterval(checkReminder, 60000)
+
+    const goOnline = () => {
+      setOnline(true)
+      flushPending()
+    }
+    const goOffline = () => setOnline(false)
+
+    window.addEventListener('online', goOnline)
+    window.addEventListener('offline', goOffline)
+    return () => {
+      clearInterval(reminderTimer)
+      window.removeEventListener('online', goOnline)
+      window.removeEventListener('offline', goOffline)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-neutral-50">
       <div className="max-w-md mx-auto min-h-screen relative">
-        <main className="pb-20">
+        {!online && (
+          <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md z-40 bg-accent-peach text-neutral-900 text-xs font-semibold text-center py-1.5">
+            Офлайн — показываем сохранённые данные
+          </div>
+        )}
+        <main key={screen} className="pb-20 anim-fade">
           {screen === 'home' && <HomeScreen />}
           {screen === 'scenarios' && <ScenariosScreen />}
           {screen === 'stats' && <StatsScreen />}
@@ -2579,6 +3067,55 @@ html {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+/* ---------- Анимации ---------- */
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%) }
+  to { transform: translateY(0) }
+}
+@keyframes pop {
+  0% { transform: scale(0.7) }
+  60% { transform: scale(1.15) }
+  100% { transform: scale(1) }
+}
+
+.anim-fade { animation: fade-in 0.2s ease both }
+.anim-fade-up { animation: fade-up 0.25s ease both }
+.anim-sheet { animation: sheet-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.anim-pop { animation: pop 0.25s ease }
+
+/* ---------- Тёмная тема ----------
+   Точечные переопределения светлых утилит под .dark */
+.dark { color-scheme: dark; }
+
+.dark .bg-neutral-50 { background-color: #151B17; }
+.dark .bg-white { background-color: #1C231E; }
+.dark .bg-neutral-100 { background-color: #2A332C; }
+.dark .bg-neutral-300 { background-color: #3A453D; }
+.dark .bg-forest-100 { background-color: #223B2B; }
+.dark .bg-forest-100\/50 { background-color: rgba(174, 195, 176, 0.12); }
+.dark .bg-accent-peach { background-color: #7A5A33; }
+.dark .bg-accent-peach\/40 { background-color: rgba(242, 204, 143, 0.15); }
+
+.dark .text-neutral-900 { color: #ECEAE4; }
+.dark .text-neutral-700 { color: #C9CDC6; }
+.dark .text-neutral-500 { color: #98A29A; }
+.dark .text-neutral-300 { color: #5F6B62; }
+.dark .text-forest-700 { color: #AEC3B0; }
+
+.dark .border-neutral-100 { border-color: #262E28; }
+.dark .border-neutral-50 { border-color: #242B26; }
+.dark .border-neutral-300 { border-color: #4A554C; }
+
+.dark .shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
 </file>
 
 <file path="src/main.tsx">

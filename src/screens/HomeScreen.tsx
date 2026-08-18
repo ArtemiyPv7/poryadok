@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Plus, RefreshCw } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Plus, RefreshCw, Lightbulb } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import RoomCard from '../components/RoomCard'
 import RoomModal from '../components/RoomModal'
@@ -10,6 +10,7 @@ import { ENERGY_OPTIONS } from '../lib/energy'
 import { computeRoomCleanliness } from '../lib/cleanliness'
 import { isOnline } from '../lib/offline'
 import { readCache, saveCache } from '../lib/cache'
+import { getSettings } from '../lib/settings'
 import {
   loadDailyPlan,
   regenerateDailyPlan,
@@ -23,9 +24,13 @@ import type { Room, Subtask, Task, TaskWithSubtasks } from '../types'
 export default function HomeScreen() {
   const [rooms, setRooms] = useState<Room[]>([])
   const [cleanliness, setCleanliness] = useState<Record<string, number | null>>({})
+  const [history, setHistory] = useState<{ completed_at: string }[]>([])
   const [loading, setLoading] = useState(true)
 
   const [energy, setEnergy] = useState<Energy>('normal')
+  const energyRef = useRef(energy)
+  energyRef.current = energy
+
   const [energyModalOpen, setEnergyModalOpen] = useState(false)
   const [dailyItems, setDailyItems] = useState<DailyItem[]>([])
   const [loadingDaily, setLoadingDaily] = useState(true)
@@ -53,15 +58,17 @@ export default function HomeScreen() {
       return
     }
 
-    const [roomsRes, tasksRes] = await Promise.all([
+    const [roomsRes, tasksRes, historyRes] = await Promise.all([
       supabase.from('rooms').select('*'),
       supabase.from('tasks').select('*, subtasks(*)'),
+      supabase.from('task_history').select('completed_at'),
     ])
 
     const roomsData = (roomsRes.data ?? []) as Room[]
     const tasksData = (tasksRes.data ?? []) as TaskWithSubtasks[]
 
     setRooms(roomsData)
+    setHistory((historyRes.data ?? []) as { completed_at: string }[])
     applyCleanliness(roomsData, tasksData)
     saveCache({ rooms: roomsData, tasks: tasksData })
     setLoading(false)
@@ -86,6 +93,16 @@ export default function HomeScreen() {
   useEffect(() => {
     loadAll()
     refreshDaily(false, 'normal')
+  }, [])
+
+  // Когда сеть вернулась и очередь доотправилась — обновляем данные
+  useEffect(() => {
+    const onSynced = () => {
+      loadAll()
+      refreshDaily(false, energyRef.current)
+    }
+    window.addEventListener('poryadok:synced', onSynced)
+    return () => window.removeEventListener('poryadok:synced', onSynced)
   }, [])
 
   function handleEnergySelect(e: Energy) {
@@ -142,6 +159,29 @@ export default function HomeScreen() {
     if (cb === null) return -1
     return ca - cb
   })
+
+  // Умная подсказка: грязная комната или привычный день уборки
+  function computeHint(): string | null {
+    const s = getSettings()
+    if (!s?.smart_hints_enabled) return null
+
+    const dirty = sortedRooms.find((r) => (cleanliness[r.id] ?? 100) < 40)
+    if (dirty) {
+      return `В «${dirty.name}» чистота ${cleanliness[dirty.id]}% — стоит заглянуть.`
+    }
+
+    const counts = new Array(7).fill(0)
+    for (const h of history) counts[new Date(h.completed_at).getDay()]++
+    const today = new Date().getDay()
+    const max = Math.max(...counts)
+    if (max >= 3 && counts[today] === max) {
+      const weekday = new Date().toLocaleDateString('ru-RU', { weekday: 'long' })
+      return `Исторически по ${weekday} у тебя больше всего уборок — сегодня отличный день.`
+    }
+    return null
+  }
+
+  const hint = loading ? null : computeHint()
 
   const roomName = (id: string) => rooms.find((r) => r.id === id)?.name ?? ''
 
@@ -223,6 +263,14 @@ export default function HomeScreen() {
           ))
         )}
       </div>
+
+      {/* Умная подсказка */}
+      {hint && (
+        <div className="bg-forest-100/50 border border-forest-300/40 rounded-2xl px-4 py-3 mb-4 text-sm text-forest-700 flex gap-2 items-start">
+          <Lightbulb size={16} className="mt-0.5 shrink-0" />
+          {hint}
+        </div>
+      )}
 
       {/* Комнаты */}
       <div className="flex items-center justify-between mb-3">

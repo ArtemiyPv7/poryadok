@@ -97,6 +97,12 @@ export default function StatsScreen() {
 
       {loading ? (
         <p className="text-sm text-neutral-500">Считаем…</p>
+      ) : history.length === 0 ? (
+        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+          <p className="text-sm text-neutral-500">
+            Здесь появится твоя статистика — выполни первую задачу, и цифры оживут 🌱
+          </p>
+        </div>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-2 mb-4">

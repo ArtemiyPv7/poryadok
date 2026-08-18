@@ -52,5 +52,8 @@ export async function checkReminder(): Promise<void> {
   if (!data || data.length === 0) return
 
   localStorage.setItem(remindedKey, '1')
-  await showNotification('Пора навести порядок 🌿', `Осталось задач: ${data.length}. Загляни в приложение!`)
+  await showNotification(
+    'Пора навести порядок 🌿',
+    `Осталось задач: ${data.length}. Загляни в приложение!`,
+  )
 }
