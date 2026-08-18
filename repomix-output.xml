@@ -1,0 +1,3739 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+public/
+  icons/
+    icon-192.png
+    icon-512.png
+  icon.svg
+src/
+  assets/
+    hero.png
+    react.svg
+    vite.svg
+  components/
+    BottomNav.tsx
+    DailyTaskCard.tsx
+    EnergyModal.tsx
+    RoomCard.tsx
+    RoomIcon.tsx
+    RoomModal.tsx
+    ScenarioRunScreen.tsx
+    TaskCard.tsx
+    TaskModal.tsx
+  lib/
+    cleanliness.ts
+    daily.ts
+    difficulty.ts
+    scenarios.ts
+    supabase.ts
+  screens/
+    FreeModeScreen.tsx
+    HomeScreen.tsx
+    RoomScreen.tsx
+    ScenariosScreen.tsx
+    SeasonalScreen.tsx
+    SettingsScreen.tsx
+    StatsScreen.tsx
+  types/
+    index.ts
+  App.tsx
+  index.css
+  main.tsx
+.gitignore
+.oxlintrc.json
+full-mockup.html
+index.html
+package.json
+README.md
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="public/icon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9FBC98"/>
+      <stop offset="45%" stop-color="#375534"/>
+      <stop offset="100%" stop-color="#0F2A1D"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="20%" cy="15%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F2CC8F" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#F2CC8F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#sheen)"/>
+
+  <circle cx="416" cy="114" r="60" fill="url(#glow)"/>
+
+  <path d="M76 258 L256 96 L436 258" fill="none" stroke="#F5F1E6" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M116 252 V400 Q116 432 148 432 H364 Q396 432 396 400 V252" fill="none" stroke="#F5F1E6" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M256 388 C200 348 172 318 172 282 C172 252 194 232 220 232 C236 232 249 240 256 254 C263 240 276 232 292 232 C318 232 340 252 340 282 C340 318 312 348 256 388 Z" fill="#7EA17A"/>
+
+  <path d="M416 64 C424 100 430 106 466 114 C430 122 424 128 416 164 C408 128 402 122 366 114 C402 106 408 100 416 64 Z" fill="#F5F1E6"/>
+</svg>
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/assets/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="src/components/BottomNav.tsx">
+import { Home, Zap, BarChart3, Settings } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import type { Screen } from '../types'
+
+interface BottomNavProps {
+  active: Screen
+  onChange: (screen: Screen) => void
+}
+
+const items: { id: Screen; icon: LucideIcon; label: string }[] = [
+  { id: 'home', icon: Home, label: 'Главная' },
+  { id: 'scenarios', icon: Zap, label: 'Сценарии' },
+  { id: 'stats', icon: BarChart3, label: 'Прогресс' },
+  { id: 'settings', icon: Settings, label: 'Настройки' },
+]
+
+export default function BottomNav({ active, onChange }: BottomNavProps) {
+  return (
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-100 flex justify-around py-2 pb-4">
+      {items.map((item) => {
+        const isActive = active === item.id
+        const Icon = item.icon
+        return (
+          <button
+            key={item.id}
+            onClick={() => onChange(item.id)}
+            className="flex flex-col items-center px-2 py-1 cursor-pointer"
+          >
+            <span
+              className={`p-2 rounded-full transition-all duration-200 ${
+                isActive
+                  ? 'bg-forest-100 text-forest-700 shadow-[0_2px_8px_rgba(55,85,52,0.25)]'
+                  : 'text-neutral-300'
+              }`}
+            >
+              <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+            </span>
+            <span
+              className={`text-[11px] mt-1 transition-colors ${
+                isActive ? 'text-forest-700 font-semibold' : 'text-neutral-500'
+              }`}
+            >
+              {item.label}
+            </span>
+          </button>
+        )
+      })}
+    </nav>
+  )
+}
+</file>
+
+<file path="src/components/DailyTaskCard.tsx">
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { difficultyInfo } from '../lib/difficulty'
+import type { DailyItem } from '../lib/daily'
+import type { Subtask } from '../types'
+
+interface DailyTaskCardProps {
+  item: DailyItem
+  roomName: string
+  onComplete: () => void
+  onToggleSubtask: (subtask: Subtask) => void
+}
+
+export default function DailyTaskCard({
+  item,
+  roomName,
+  onComplete,
+  onToggleSubtask,
+}: DailyTaskCardProps) {
+  const [expanded, setExpanded] = useState(false)
+  const info = difficultyInfo(item.task.difficulty)
+  const hasSubtasks = item.task.subtasks.length > 0
+
+  return (
+    <div className="py-3 border-b border-neutral-50 last:border-b-0">
+      <div className="flex items-start gap-3">
+        <button
+          onClick={onComplete}
+          disabled={item.isCompleted}
+          className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 mt-0.5 text-white text-sm transition cursor-pointer ${
+            item.isCompleted ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+          }`}
+        >
+          {item.isCompleted ? '✓' : ''}
+        </button>
+
+        <div className="flex-1 min-w-0">
+          <div
+            className={`font-medium ${
+              item.isCompleted ? 'strike-center text-neutral-500' : 'text-neutral-900'
+            }`}
+          >
+            <span className={item.isCompleted ? 'strike-center' : ''}>
+              {item.task.title}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5 items-center mt-1">
+            <span className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${info.tagClass}`}>
+              {info.label}
+            </span>
+            <span className="text-[11px] text-neutral-500">{item.task.duration_minutes} мин</span>
+            <span className="text-[11px] text-forest-700">{roomName}</span>
+          </div>
+
+          {hasSubtasks && expanded && (
+            <div className="mt-2 space-y-1.5 pl-1">
+              {item.task.subtasks.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => onToggleSubtask(s)}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <span
+                    className={`w-4 h-4 rounded border flex items-center justify-center text-[10px] text-white ${
+                      s.is_completed
+                        ? 'bg-forest-500 border-forest-500'
+                        : 'border-neutral-300'
+                    }`}
+                  >
+                    {s.is_completed ? '✓' : ''}
+                  </span>
+                  <span
+                    className={`text-sm ${
+                      s.is_completed ? 'strike-center text-neutral-500' : 'text-neutral-700'
+                    }`}
+                  >
+                    {s.title}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {hasSubtasks && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-neutral-300 p-1 cursor-pointer"
+          >
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${expanded ? 'rotate-180' : ''}`}
+            />
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/EnergyModal.tsx">
+import { X, BatteryLow, BatteryMedium, BatteryFull } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import type { Energy } from '../lib/daily'
+
+export const ENERGY_OPTIONS: {
+  value: Energy
+  label: string
+  hint: string
+  icon: LucideIcon
+}[] = [
+  { value: 'low', label: 'Мало сил', hint: 'Лёгкие задачи, около 15 минут', icon: BatteryLow },
+  { value: 'normal', label: 'Нормально', hint: 'Сбалансированно, около 30 минут', icon: BatteryMedium },
+  { value: 'high', label: 'Много сил', hint: 'Возьмём и сложные, до 60 минут', icon: BatteryFull },
+]
+
+interface EnergyModalProps {
+  current: Energy
+  onSelect: (energy: Energy) => void
+  onClose: () => void
+}
+
+export default function EnergyModal({ current, onSelect, onClose }: EnergyModalProps) {
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl font-bold text-neutral-900">Сколько сегодня сил?</h2>
+          <button onClick={onClose} className="text-neutral-500 p-1 cursor-pointer">
+            <X size={22} />
+          </button>
+        </div>
+
+        <div className="space-y-2">
+          {ENERGY_OPTIONS.map((opt) => {
+            const Icon = opt.icon
+            const isActive = current === opt.value
+            return (
+              <button
+                key={opt.value}
+                onClick={() => onSelect(opt.value)}
+                className={`w-full flex items-center gap-3 p-4 rounded-2xl border-2 transition cursor-pointer text-left ${
+                  isActive ? 'border-forest-500 bg-forest-100/50' : 'border-neutral-100'
+                }`}
+              >
+                <span
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    isActive ? 'bg-forest-500 text-white' : 'bg-neutral-50 text-neutral-500'
+                  }`}
+                >
+                  <Icon size={20} />
+                </span>
+                <span>
+                  <span className="block font-semibold text-neutral-900">{opt.label}</span>
+                  <span className="block text-xs text-neutral-500">{opt.hint}</span>
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/RoomCard.tsx">
+import { Pencil } from 'lucide-react'
+import RoomIcon from './RoomIcon'
+import { cleanlinessBarClass, cleanlinessTextClass } from '../lib/cleanliness'
+import type { Room } from '../types'
+
+interface RoomCardProps {
+  room: Room
+  cleanliness: number | null
+  onOpen: () => void
+  onEdit: () => void
+}
+
+export default function RoomCard({ room, cleanliness, onOpen, onEdit }: RoomCardProps) {
+  return (
+    <div
+      onClick={onOpen}
+      className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3 cursor-pointer active:scale-[0.99] transition"
+    >
+      <div className="w-11 h-11 rounded-xl bg-forest-100 text-forest-700 flex items-center justify-center shrink-0">
+        <RoomIcon icon={room.icon} />
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <div className="flex items-baseline justify-between mb-1.5">
+          <span className="font-semibold text-neutral-900">{room.name}</span>
+          {cleanliness !== null ? (
+            <span className={`text-xs font-semibold ${cleanlinessTextClass(cleanliness)}`}>
+              {cleanliness}%
+            </span>
+          ) : (
+            <span className="text-xs text-neutral-500">нет задач</span>
+          )}
+        </div>
+        {cleanliness !== null && (
+          <div className="h-1.5 rounded-full bg-neutral-100 overflow-hidden">
+            <div
+              className={`h-full rounded-full ${cleanlinessBarClass(cleanliness)}`}
+              style={{ width: `${cleanliness}%` }}
+            />
+          </div>
+        )}
+      </div>
+
+      <button
+        onClick={(e) => {
+          e.stopPropagation()
+          onEdit()
+        }}
+        className="text-neutral-300 hover:text-forest-700 p-2 cursor-pointer transition-colors shrink-0"
+      >
+        <Pencil size={18} />
+      </button>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/RoomIcon.tsx">
+import {
+  CookingPot, Bath, ShowerHead, Sofa, BedDouble, Baby,
+  DoorOpen, Laptop, TreePine, WashingMachine, Car, Sparkles,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+export const ROOM_ICONS: Record<string, LucideIcon> = {
+  kitchen: CookingPot,
+  bath: Bath,
+  shower: ShowerHead,
+  living: Sofa,
+  bedroom: BedDouble,
+  kids: Baby,
+  hall: DoorOpen,
+  office: Laptop,
+  balcony: TreePine,
+  laundry: WashingMachine,
+  garage: Car,
+  other: Sparkles,
+}
+
+export const ROOM_ICON_LABELS: Record<string, string> = {
+  kitchen: 'Кухня',
+  bath: 'Ванная',
+  shower: 'Душ',
+  living: 'Гостиная',
+  bedroom: 'Спальня',
+  kids: 'Детская',
+  hall: 'Прихожая',
+  office: 'Кабинет',
+  balcony: 'Балкон',
+  laundry: 'Прачечная',
+  garage: 'Гараж',
+  other: 'Другое',
+}
+
+interface RoomIconProps {
+  icon: string
+  size?: number
+}
+
+export default function RoomIcon({ icon, size = 22 }: RoomIconProps) {
+  const Icon = ROOM_ICONS[icon] ?? Sparkles
+  return <Icon size={size} />
+}
+</file>
+
+<file path="src/components/RoomModal.tsx">
+import { useState } from 'react'
+import { X } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import RoomIcon, { ROOM_ICONS, ROOM_ICON_LABELS } from './RoomIcon'
+import type { Room } from '../types'
+
+interface RoomModalProps {
+  room: Room | null
+  onClose: () => void
+  onSaved: () => void
+}
+
+export default function RoomModal({ room, onClose, onSaved }: RoomModalProps) {
+  const [name, setName] = useState(room?.name ?? '')
+  const [icon, setIcon] = useState(room?.icon ?? 'other')
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  async function handleSave() {
+    if (!name.trim()) {
+      setError('Введите название комнаты')
+      return
+    }
+    setSaving(true)
+    setError(null)
+
+    const payload = { name: name.trim(), icon }
+    const { error: err } = room
+      ? await supabase.from('rooms').update(payload).eq('id', room.id)
+      : await supabase.from('rooms').insert(payload)
+
+    setSaving(false)
+    if (err) {
+      setError('Не удалось сохранить: ' + err.message)
+      return
+    }
+    onSaved()
+  }
+
+  async function handleDelete() {
+    if (!room) return
+    if (!confirm(`Удалить комнату «${room.name}» вместе с её задачами?`)) return
+
+    const { error: err } = await supabase.from('rooms').delete().eq('id', room.id)
+    if (err) {
+      setError('Не удалось удалить: ' + err.message)
+      return
+    }
+    onSaved()
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl font-bold text-neutral-900">
+            {room ? 'Редактировать комнату' : 'Новая комната'}
+          </h2>
+          <button onClick={onClose} className="text-neutral-500 p-1 cursor-pointer">
+            <X size={22} />
+          </button>
+        </div>
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
+          Название
+        </label>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Например, Кухня"
+          className="w-full rounded-xl border border-neutral-100 bg-neutral-50 px-4 py-3 text-neutral-900 outline-none focus:border-forest-500 mb-5"
+        />
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
+          Иконка
+        </label>
+        <div className="grid grid-cols-6 gap-2 mb-6">
+          {Object.entries(ROOM_ICONS).map(([key, Icon]) => (
+            <button
+              key={key}
+              type="button"
+              title={ROOM_ICON_LABELS[key]}
+              onClick={() => setIcon(key)}
+              className={`p-2.5 rounded-xl flex items-center justify-center transition cursor-pointer ${
+                icon === key
+                  ? 'bg-forest-500 text-white'
+                  : 'bg-neutral-50 text-neutral-500 hover:bg-forest-100'
+              }`}
+            >
+              <Icon size={20} />
+            </button>
+          ))}
+        </div>
+
+        {error && (
+          <p className="text-sm text-accent-orange mb-4">{error}</p>
+        )}
+
+        <div className="flex gap-3">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="flex-1 rounded-xl bg-forest-500 text-white font-semibold py-3 cursor-pointer disabled:opacity-50 transition"
+          >
+            {saving ? 'Сохраняем…' : 'Сохранить'}
+          </button>
+          {room && (
+            <button
+              onClick={handleDelete}
+              className="rounded-xl px-4 py-3 text-accent-orange font-semibold bg-neutral-50 cursor-pointer transition"
+            >
+              Удалить
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/ScenarioRunScreen.tsx">
+import { useEffect, useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { buildScenario, type ScenarioKind } from '../lib/scenarios'
+import { completeTask } from '../lib/daily'
+import { difficultyInfo } from '../lib/difficulty'
+import type { TaskWithSubtasks } from '../types'
+
+interface ScenarioRunScreenProps {
+  kind: ScenarioKind
+  title: string
+  subtitle: string
+  onBack: () => void
+}
+
+export default function ScenarioRunScreen({
+  kind,
+  title,
+  subtitle,
+  onBack,
+}: ScenarioRunScreenProps) {
+  const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
+  const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    buildScenario(kind).then((res) => {
+      setTasks(res.tasks)
+      setLoading(false)
+    })
+  }, [kind])
+
+  async function handleComplete(task: TaskWithSubtasks) {
+    await completeTask(task)
+    setDoneIds((prev) => new Set(prev).add(task.id))
+  }
+
+  const remaining = tasks.filter((t) => !doneIds.has(t.id))
+  const remainingMinutes = remaining.reduce((sum, t) => sum + t.duration_minutes, 0)
+
+  return (
+    <div className="px-5 pt-6">
+      <div className="flex items-center gap-3 mb-2">
+        <button
+          onClick={onBack}
+          className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-700 cursor-pointer active:scale-95 transition"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <h1 className="text-2xl font-semibold text-neutral-900">{title}</h1>
+      </div>
+      <p className="text-sm text-neutral-500 mb-4 ml-12">{subtitle}</p>
+
+      {!loading && tasks.length > 0 && (
+        <p className="text-xs text-neutral-500 mb-3 ml-1">
+          {tasks.length - remaining.length} из {tasks.length} · осталось ≈ {remainingMinutes} мин
+        </p>
+      )}
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Подбираем задачи…</p>
+      ) : tasks.length === 0 ? (
+        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+          <p className="text-sm text-neutral-500">Ничего не нужно — всё чисто!</p>
+        </div>
+      ) : (
+        tasks.map((task) => {
+          const done = doneIds.has(task.id)
+          const info = difficultyInfo(task.difficulty)
+          return (
+            <div
+              key={task.id}
+              className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3"
+            >
+              <button
+                onClick={() => handleComplete(task)}
+                disabled={done}
+                className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
+                  done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                }`}
+              >
+                {done ? '✓' : ''}
+              </button>
+              <div className="flex-1 min-w-0">
+                <div
+                  className={`font-medium ${
+                    done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                  }`}
+                >
+                  <span className={done ? 'strike-center' : ''}>{task.title}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 items-center mt-1">
+                  <span className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${info.tagClass}`}>
+                    {info.label}
+                  </span>
+                  <span className="text-[11px] text-neutral-500">{task.duration_minutes} мин</span>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/TaskCard.tsx">
+import { Pencil, ListChecks } from 'lucide-react'
+import { difficultyInfo } from '../lib/difficulty'
+import type { TaskWithSubtasks } from '../types'
+
+interface TaskCardProps {
+  task: TaskWithSubtasks
+  onComplete: () => void
+  onEdit: () => void
+}
+
+export default function TaskCard({ task, onComplete, onEdit }: TaskCardProps) {
+  const info = difficultyInfo(task.difficulty)
+
+  return (
+    <div className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3">
+      <button
+        onClick={onComplete}
+        className="w-6 h-6 rounded-lg border-2 border-neutral-300 flex items-center justify-center shrink-0 text-white text-sm cursor-pointer hover:border-forest-500 transition"
+      />
+      <div className="flex-1 min-w-0">
+        <div className="font-semibold text-neutral-900 mb-1.5">{task.title}</div>
+        <div className="flex flex-wrap gap-1.5 items-center">
+          <span className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${info.tagClass}`}>
+            {info.label}
+          </span>
+          <span className="text-[11px] text-neutral-500">{task.duration_minutes} мин</span>
+          <span className="text-[11px] text-neutral-500">· раз в {task.frequency_days} дн</span>
+          {task.subtasks.length > 0 && (
+            <span className="text-[11px] text-neutral-500 flex items-center gap-1">
+              <ListChecks size={12} /> {task.subtasks.length}
+            </span>
+          )}
+        </div>
+      </div>
+      <button
+        onClick={onEdit}
+        className="text-neutral-300 hover:text-forest-700 p-2 cursor-pointer transition-colors"
+      >
+        <Pencil size={18} />
+      </button>
+    </div>
+  )
+}
+</file>
+
+<file path="src/components/TaskModal.tsx">
+import { useState } from 'react'
+import { X, Plus, Trash2 } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import { DIFFICULTIES } from '../lib/difficulty'
+import type { Difficulty, Room, TaskWithSubtasks } from '../types'
+
+interface SubtaskRow {
+  id: string | null
+  title: string
+}
+
+interface TaskModalProps {
+  room: Room
+  task: TaskWithSubtasks | null
+  onClose: () => void
+  onSaved: () => void
+}
+
+const FREQUENCY_OPTIONS = [
+  { days: 1, label: 'каждый день' },
+  { days: 2, label: 'раз в 2 дня' },
+  { days: 3, label: 'раз в 3 дня' },
+  { days: 7, label: 'раз в неделю' },
+  { days: 14, label: 'раз в 2 недели' },
+  { days: 30, label: 'раз в месяц' },
+]
+
+export default function TaskModal({ room, task, onClose, onSaved }: TaskModalProps) {
+  const [title, setTitle] = useState(task?.title ?? '')
+  const [difficulty, setDifficulty] = useState<Difficulty>(task?.difficulty ?? 'easy')
+  const [duration, setDuration] = useState(task?.duration_minutes ?? 10)
+  const [frequency, setFrequency] = useState(task?.frequency_days ?? 1)
+  const [isSeasonal, setIsSeasonal] = useState(task?.is_seasonal ?? false)
+  const [subtasks, setSubtasks] = useState<SubtaskRow[]>(
+    (task?.subtasks ?? []).map((s) => ({ id: s.id, title: s.title })),
+  )
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  function addSubtaskRow() {
+    setSubtasks([...subtasks, { id: null, title: '' }])
+  }
+
+  function updateSubtaskRow(index: number, value: string) {
+    setSubtasks(subtasks.map((row, i) => (i === index ? { ...row, title: value } : row)))
+  }
+
+  function removeSubtaskRow(index: number) {
+    setSubtasks(subtasks.filter((_, i) => i !== index))
+  }
+
+  async function handleSave() {
+    if (!title.trim()) {
+      setError('Введите название задачи')
+      return
+    }
+    setSaving(true)
+    setError(null)
+
+    const payload = {
+      room_id: room.id,
+      title: title.trim(),
+      difficulty,
+      is_seasonal: isSeasonal,
+      duration_minutes: duration,
+      frequency_days: frequency,
+    }
+
+    // Сохраняем задачу
+    let taskId: string
+    if (task) {
+      const { error: err } = await supabase.from('tasks').update(payload).eq('id', task.id)
+      if (err) {
+        setError('Не удалось сохранить: ' + err.message)
+        setSaving(false)
+        return
+      }
+      taskId = task.id
+    } else {
+      const { data, error: err } = await supabase.from('tasks').insert(payload).select().single()
+      if (err || !data) {
+        setError('Не удалось создать: ' + (err?.message ?? 'неизвестная ошибка'))
+        setSaving(false)
+        return
+      }
+      taskId = data.id
+    }
+
+    // Сохраняем подзадачи: существующие обновляем, новые создаём, удалённые стираем
+    const keptIds = subtasks.filter((r) => r.id !== null).map((r) => r.id as string)
+    const removedIds = (task?.subtasks ?? []).map((s) => s.id).filter((id) => !keptIds.includes(id))
+
+    if (removedIds.length > 0) {
+      await supabase.from('subtasks').delete().in('id', removedIds)
+    }
+
+    for (const row of subtasks) {
+      if (!row.title.trim()) continue
+      if (row.id) {
+        await supabase.from('subtasks').update({ title: row.title.trim() }).eq('id', row.id)
+      } else {
+        await supabase.from('subtasks').insert({ task_id: taskId, title: row.title.trim() })
+      }
+    }
+
+    setSaving(false)
+    onSaved()
+  }
+
+  async function handleDelete() {
+    if (!task) return
+    if (!confirm(`Удалить задачу «${task.title}»?`)) return
+    const { error: err } = await supabase.from('tasks').delete().eq('id', task.id)
+    if (err) {
+      setError('Не удалось удалить: ' + err.message)
+      return
+    }
+    onSaved()
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-neutral-900/40 flex items-end justify-center sm:items-center"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl font-bold text-neutral-900">
+            {task ? 'Редактировать задачу' : `Новая задача · ${room.name}`}
+          </h2>
+          <button onClick={onClose} className="text-neutral-500 p-1 cursor-pointer">
+            <X size={22} />
+          </button>
+        </div>
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">Название</label>
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Например, Помыть полы"
+          className="w-full rounded-xl border border-neutral-100 bg-neutral-50 px-4 py-3 text-neutral-900 outline-none focus:border-forest-500 mb-4"
+        />
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">Сложность</label>
+        <div className="flex gap-2 mb-4">
+          {DIFFICULTIES.map((d) => (
+            <button
+              key={d.value}
+              type="button"
+              onClick={() => setDifficulty(d.value)}
+              className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition cursor-pointer ${
+                difficulty === d.value ? d.activeClass : 'bg-neutral-50 text-neutral-500'
+              }`}
+            >
+              {d.label}
+            </button>
+          ))}
+        </div>
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">
+          Время, минут: <span className="font-bold text-forest-700">{duration}</span>
+        </label>
+        <input
+          type="number"
+          min={1}
+          step={5}
+          value={duration}
+          onChange={(e) => setDuration(Math.max(1, Number(e.target.value) || 1))}
+          className="w-full rounded-xl border border-neutral-100 bg-neutral-50 px-4 py-3 text-neutral-900 outline-none focus:border-forest-500 mb-4"
+        />
+
+        <label className="block text-sm font-medium text-neutral-700 mb-2">Периодичность</label>
+        <div className="flex flex-wrap gap-2 mb-5">
+          {FREQUENCY_OPTIONS.map((f) => (
+            <button
+              key={f.days}
+              type="button"
+              onClick={() => setFrequency(f.days)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer ${
+                frequency === f.days
+                  ? 'bg-forest-500 text-white'
+                  : 'bg-neutral-50 text-neutral-500'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <label className="flex items-center gap-3 mb-5 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={isSeasonal}
+            onChange={(e) => setIsSeasonal(e.target.checked)}
+            className="w-5 h-5 accent-forest-500"
+          />
+          <span className="text-sm text-neutral-700">
+            Сезонная задача (окна, кондиционер, гардероб)
+          </span>
+        </label>
+
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-sm font-medium text-neutral-700">Подзадачи</label>
+          <button
+            type="button"
+            onClick={addSubtaskRow}
+            className="text-xs font-semibold text-forest-700 flex items-center gap-1 cursor-pointer"
+          >
+            <Plus size={14} /> добавить
+          </button>
+        </div>
+        {subtasks.length === 0 && (
+          <p className="text-xs text-neutral-500 mb-4">Пока нет — можно разбить задачу на шаги</p>
+        )}
+        <div className="space-y-2 mb-5">
+          {subtasks.map((row, index) => (
+            <div key={index} className="flex gap-2">
+              <input
+                value={row.title}
+                onChange={(e) => updateSubtaskRow(index, e.target.value)}
+                placeholder={`Шаг ${index + 1}`}
+                className="flex-1 rounded-xl border border-neutral-100 bg-neutral-50 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-forest-500"
+              />
+              <button
+                type="button"
+                onClick={() => removeSubtaskRow(index)}
+                className="text-neutral-300 hover:text-accent-orange p-2 cursor-pointer"
+              >
+                <Trash2 size={16} />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {error && <p className="text-sm text-accent-orange mb-4">{error}</p>}
+
+        <div className="flex gap-3">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="flex-1 rounded-xl bg-forest-500 text-white font-semibold py-3 cursor-pointer disabled:opacity-50 transition"
+          >
+            {saving ? 'Сохраняем…' : 'Сохранить'}
+          </button>
+          {task && (
+            <button
+              onClick={handleDelete}
+              className="rounded-xl px-4 py-3 text-accent-orange font-semibold bg-neutral-50 cursor-pointer transition"
+            >
+              Удалить
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/lib/cleanliness.ts">
+import type { Task } from '../types'
+
+// Свежесть задачи: 1.0 — только что, 0 — просрочено
+export function taskFreshness(task: Task): number {
+  const ref = task.last_completed_at ?? task.created_at
+  const days = (Date.now() - new Date(ref).getTime()) / 86400000
+  return Math.max(0, 1 - days / task.frequency_days)
+}
+
+// Чистота комнаты: средневзвешенное по времени задач, в процентах
+export function computeRoomCleanliness(tasks: Task[]): number | null {
+  if (tasks.length === 0) return null
+  const totalMinutes = tasks.reduce((sum, t) => sum + t.duration_minutes, 0)
+  if (totalMinutes === 0) return null
+  const weighted = tasks.reduce(
+    (sum, t) => sum + taskFreshness(t) * t.duration_minutes,
+    0,
+  )
+  return Math.round((weighted / totalMinutes) * 100)
+}
+
+export function cleanlinessBarClass(value: number): string {
+  if (value >= 70) return 'bg-forest-500'
+  if (value >= 40) return 'bg-accent-peach'
+  return 'bg-accent-orange'
+}
+
+export function cleanlinessTextClass(value: number): string {
+  if (value >= 70) return 'text-forest-700'
+  if (value >= 40) return 'text-neutral-700'
+  return 'text-accent-orange'
+}
+</file>
+
+<file path="src/lib/daily.ts">
+import { supabase } from './supabase'
+import { computeRoomCleanliness } from './cleanliness'
+import type { Subtask, Task, TaskWithSubtasks } from '../types'
+
+export type Energy = 'low' | 'normal' | 'high'
+
+export const ENERGY_BUDGET: Record<Energy, number> = {
+  low: 15,
+  normal: 30,
+  high: 60,
+}
+
+export interface DailyItem {
+  planId: string
+  isCompleted: boolean
+  task: TaskWithSubtasks
+}
+
+function localDateStr(offsetDays = 0): string {
+  const d = new Date()
+  d.setDate(d.getDate() + offsetDays)
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
+
+function daysSince(dateStr: string | null): number {
+  if (!dateStr) return 0
+  return (Date.now() - new Date(dateStr).getTime()) / 86400000
+}
+
+// Выполнена ли задача сегодня
+export function isToday(dateStr: string | null): boolean {
+  if (!dateStr) return false
+  const d = new Date(dateStr)
+  const now = new Date()
+  return (
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate()
+  )
+}
+
+// Просрочена ли задача
+export function isOverdue(task: Task): boolean {
+  return daysSince(task.last_completed_at ?? task.created_at) / task.frequency_days >= 1
+}
+
+// Скоринг задачи (алгоритм v2)
+function scoreTask(
+  task: TaskWithSubtasks,
+  energy: Energy,
+  skippedYesterday: boolean,
+  roomCleanliness: number | null,
+  isWeekday: boolean,
+): number {
+  const days = daysSince(task.last_completed_at ?? task.created_at)
+  const urgency = Math.min(days / task.frequency_days, 3)
+
+  let score = urgency
+  if (urgency >= 1) score += 0.5
+
+  if (energy === 'low') {
+    if (task.difficulty === 'easy') score += 0.3
+    if (task.difficulty === 'hard') score -= 0.3
+  }
+  if (energy === 'high') {
+    if (task.difficulty === 'hard') score += 0.3
+    if (task.difficulty === 'easy') score -= 0.3
+  }
+
+  if (isWeekday && task.duration_minutes >= 20) score -= 0.2
+  if (skippedYesterday) score -= 0.15
+  if (roomCleanliness !== null) score += 0.3 * (1 - roomCleanliness / 100)
+
+  return score
+}
+
+// Объективный приоритет для свободного режима (без энергии)
+export function taskPriority(task: TaskWithSubtasks, roomCleanliness: number | null): number {
+  const day = new Date().getDay()
+  const isWeekday = day >= 1 && day <= 5
+  return scoreTask(task, 'normal', false, roomCleanliness, isWeekday)
+}
+
+function selectTasks(
+  candidates: TaskWithSubtasks[],
+  scores: Map<string, number>,
+  energy: Energy,
+  maxCount: number,
+  alreadyMinutes: number,
+): TaskWithSubtasks[] {
+  const sorted = [...candidates].sort(
+    (a, b) => (scores.get(b.id) ?? 0) - (scores.get(a.id) ?? 0),
+  )
+
+  const picked: TaskWithSubtasks[] = []
+  const roomsUsed = new Set<string>()
+  let timeLeft = ENERGY_BUDGET[energy] - alreadyMinutes
+
+  for (const task of sorted) {
+    if (picked.length >= maxCount) break
+    if (roomsUsed.has(task.room_id)) continue
+    if (task.duration_minutes > timeLeft) continue
+    picked.push(task)
+    roomsUsed.add(task.room_id)
+    timeLeft -= task.duration_minutes
+  }
+
+  if (picked.length === 0 && sorted.length > 0) {
+    picked.push(sorted[0])
+  }
+
+  return picked
+}
+
+async function fetchItemsForPlan(
+  planRows: { id: string; task_id: string; is_completed: boolean }[],
+): Promise<DailyItem[]> {
+  if (planRows.length === 0) return []
+  const ids = planRows.map((r) => r.task_id)
+  const { data } = await supabase.from('tasks').select('*, subtasks(*)').in('id', ids)
+  const tasks = (data ?? []) as TaskWithSubtasks[]
+  return planRows
+    .map((row) => ({
+      planId: row.id,
+      isCompleted: row.is_completed,
+      task: tasks.find((t) => t.id === row.task_id)!,
+    }))
+    .filter((item) => Boolean(item.task))
+}
+
+async function generate(energy: Energy, completedIds: string[]): Promise<DailyItem[]> {
+  const today = localDateStr(0)
+
+  const [tasksRes, settingsRes, skippedRes] = await Promise.all([
+    supabase.from('tasks').select('*, subtasks(*)'),
+    supabase.from('user_settings').select('daily_tasks_count').limit(1).maybeSingle(),
+    supabase
+      .from('daily_plans')
+      .select('task_id')
+      .eq('plan_date', localDateStr(-1))
+      .eq('is_completed', false),
+  ])
+
+  const allTasks = (tasksRes.data ?? []) as TaskWithSubtasks[]
+  const maxCount = settingsRes.data?.daily_tasks_count ?? 3
+  const skipped = new Set((skippedRes.data ?? []).map((r) => r.task_id))
+
+  const byRoom = new Map<string, TaskWithSubtasks[]>()
+  for (const t of allTasks) {
+    byRoom.set(t.room_id, [...(byRoom.get(t.room_id) ?? []), t])
+  }
+  const cleanByRoom = new Map<string, number | null>()
+  for (const [roomId, roomTasks] of byRoom) {
+    cleanByRoom.set(roomId, computeRoomCleanliness(roomTasks))
+  }
+
+  const completedSet = new Set(completedIds)
+  const alreadyMinutes = allTasks
+    .filter((t) => completedSet.has(t.id))
+    .reduce((sum, t) => sum + t.duration_minutes, 0)
+  const candidates = allTasks.filter((t) => !completedSet.has(t.id) && !t.is_seasonal)
+
+  const day = new Date().getDay()
+  const isWeekday = day >= 1 && day <= 5
+
+  const scores = new Map<string, number>()
+  for (const t of candidates) {
+    scores.set(
+      t.id,
+      scoreTask(t, energy, skipped.has(t.id), cleanByRoom.get(t.room_id) ?? null, isWeekday),
+    )
+  }
+
+  const picked = selectTasks(candidates, scores, energy, maxCount, alreadyMinutes)
+
+  if (picked.length > 0) {
+    await supabase
+      .from('subtasks')
+      .update({ is_completed: false })
+      .in('task_id', picked.map((t) => t.id))
+
+    await supabase
+      .from('daily_plans')
+      .insert(picked.map((t) => ({ plan_date: today, task_id: t.id })))
+  }
+
+  const { data: planRows } = await supabase
+    .from('daily_plans')
+    .select('*')
+    .eq('plan_date', today)
+
+  return fetchItemsForPlan(planRows ?? [])
+}
+
+export async function loadDailyPlan(energy: Energy): Promise<DailyItem[]> {
+  const today = localDateStr(0)
+  const { data: planRows } = await supabase
+    .from('daily_plans')
+    .select('*')
+    .eq('plan_date', today)
+
+  if (planRows && planRows.length > 0) return fetchItemsForPlan(planRows)
+  return generate(energy, [])
+}
+
+export async function regenerateDailyPlan(energy: Energy): Promise<DailyItem[]> {
+  const today = localDateStr(0)
+  const { data: planRows } = await supabase
+    .from('daily_plans')
+    .select('*')
+    .eq('plan_date', today)
+
+  const completedIds = (planRows ?? []).filter((r) => r.is_completed).map((r) => r.task_id)
+
+  await supabase
+    .from('daily_plans')
+    .delete()
+    .eq('plan_date', today)
+    .eq('is_completed', false)
+
+  return generate(energy, completedIds)
+}
+
+// Общая функция выполнения: задача + история + подзадачи + дейлик на сегодня
+export async function completeTask(task: Task): Promise<void> {
+  const now = new Date().toISOString()
+  const today = localDateStr(0)
+  await Promise.all([
+    supabase.from('tasks').update({ last_completed_at: now }).eq('id', task.id),
+    supabase
+      .from('task_history')
+      .insert({ task_id: task.id, duration_minutes: task.duration_minutes }),
+    supabase.from('subtasks').update({ is_completed: true }).eq('task_id', task.id),
+    supabase
+      .from('daily_plans')
+      .update({ is_completed: true })
+      .eq('task_id', task.id)
+      .eq('plan_date', today),
+  ])
+  if ('vibrate' in navigator) navigator.vibrate(30)
+}
+
+export async function toggleSubtask(subtask: Subtask): Promise<boolean> {
+  const next = !subtask.is_completed
+  await supabase.from('subtasks').update({ is_completed: next }).eq('id', subtask.id)
+  return next
+}
+</file>
+
+<file path="src/lib/difficulty.ts">
+import type { Difficulty } from '../types'
+
+export const DIFFICULTIES: {
+  value: Difficulty
+  label: string
+  tagClass: string
+  activeClass: string
+}[] = [
+  {
+    value: 'easy',
+    label: 'Легко',
+    tagClass: 'bg-forest-100 text-forest-700',
+    activeClass: 'bg-forest-500 text-white',
+  },
+  {
+    value: 'medium',
+    label: 'Средне',
+    tagClass: 'bg-accent-peach/40 text-neutral-700',
+    activeClass: 'bg-accent-peach text-neutral-900',
+  },
+  {
+    value: 'hard',
+    label: 'Сложно',
+    tagClass: 'bg-accent-orange/15 text-accent-orange',
+    activeClass: 'bg-accent-orange text-white',
+  },
+]
+
+export function difficultyInfo(value: Difficulty) {
+  return DIFFICULTIES.find((d) => d.value === value) ?? DIFFICULTIES[0]
+}
+</file>
+
+<file path="src/lib/scenarios.ts">
+import { supabase } from './supabase'
+import { computeRoomCleanliness } from './cleanliness'
+import { isToday, taskPriority } from './daily'
+import type { Room, TaskWithSubtasks } from '../types'
+
+export type ScenarioKind = 'one' | 'guests' | 'quick' | 'deep' | 'party'
+
+export interface ScenarioResult {
+  tasks: TaskWithSubtasks[]
+  totalMinutes: number
+}
+
+// Комнаты, которые видят гости
+const GUEST_ICONS = ['kitchen', 'living', 'hall', 'bath', 'shower']
+
+interface ScenarioConfig {
+  budget: number
+  maxCount: number
+  roomIcons?: string[]
+}
+
+const CONFIGS: Record<ScenarioKind, ScenarioConfig> = {
+  one: { budget: Infinity, maxCount: 1 },
+  guests: { budget: 20, maxCount: 4, roomIcons: GUEST_ICONS },
+  quick: { budget: 15, maxCount: 3 },
+  deep: { budget: 120, maxCount: 8 },
+  party: { budget: 45, maxCount: 6, roomIcons: ['kitchen', 'living', 'hall'] },
+}
+
+export async function buildScenario(kind: ScenarioKind): Promise<ScenarioResult> {
+  const config = CONFIGS[kind]
+
+  const [roomsRes, tasksRes] = await Promise.all([
+    supabase.from('rooms').select('*'),
+    supabase.from('tasks').select('*, subtasks(*)'),
+  ])
+
+  const rooms = (roomsRes.data ?? []) as Room[]
+  const tasks = (tasksRes.data ?? []) as TaskWithSubtasks[]
+
+  const roomById = new Map(rooms.map((r) => [r.id, r]))
+
+  const cleanByRoom = new Map<string, number | null>()
+  for (const room of rooms) {
+    cleanByRoom.set(
+      room.id,
+      computeRoomCleanliness(tasks.filter((t) => t.room_id === room.id)),
+    )
+  }
+
+  // Кандидаты: не сезонные, не выполненные сегодня, при необходимости — по комнатам
+  let candidates = tasks.filter((t) => !t.is_seasonal && !isToday(t.last_completed_at))
+  if (config.roomIcons) {
+    candidates = candidates.filter((t) => {
+      const room = roomById.get(t.room_id)
+      return room !== undefined && config.roomIcons!.includes(room.icon)
+    })
+  }
+
+  const scored = candidates
+    .map((t) => ({ t, score: taskPriority(t, cleanByRoom.get(t.room_id) ?? null) }))
+    .sort((a, b) => b.score - a.score)
+
+  const picked: TaskWithSubtasks[] = []
+  let timeLeft = config.budget
+
+  for (const { t } of scored) {
+    if (picked.length >= config.maxCount) break
+    if (t.duration_minutes > timeLeft) continue
+    picked.push(t)
+    timeLeft -= t.duration_minutes
+  }
+
+  // Для "одной задачи" берём топ в любом случае
+  if (picked.length === 0 && kind === 'one' && scored.length > 0) {
+    picked.push(scored[0].t)
+  }
+
+  return {
+    tasks: picked,
+    totalMinutes: picked.reduce((sum, t) => sum + t.duration_minutes, 0),
+  }
+}
+</file>
+
+<file path="src/lib/supabase.ts">
+import { createClient } from '@supabase/supabase-js'
+
+// Получаем переменные из .env файла
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+// Создаём и экспортируем клиент
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+</file>
+
+<file path="src/screens/FreeModeScreen.tsx">
+import { useEffect, useMemo, useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import RoomIcon from '../components/RoomIcon'
+import { computeRoomCleanliness, cleanlinessTextClass } from '../lib/cleanliness'
+import { completeTask, isOverdue, taskPriority } from '../lib/daily'
+import { difficultyInfo } from '../lib/difficulty'
+import type { Difficulty, Room, TaskWithSubtasks } from '../types'
+
+type SortMode = 'priority' | 'fastest' | 'easiest'
+
+const SORT_OPTIONS: { value: SortMode; label: string }[] = [
+  { value: 'priority', label: 'По приоритету' },
+  { value: 'fastest', label: 'Сначала быстрые' },
+  { value: 'easiest', label: 'Сначала лёгкие' },
+]
+
+const DIFFICULTY_ORDER: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 }
+
+function isToday(dateStr: string | null): boolean {
+  if (!dateStr) return false
+  const d = new Date(dateStr)
+  const now = new Date()
+  return (
+    d.getFullYear() === now.getFullYear() &&
+    d.getMonth() === now.getMonth() &&
+    d.getDate() === now.getDate()
+  )
+}
+
+interface FreeModeScreenProps {
+  onBack: () => void
+}
+
+export default function FreeModeScreen({ onBack }: FreeModeScreenProps) {
+  const [rooms, setRooms] = useState<Room[]>([])
+  const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
+  const [loading, setLoading] = useState(true)
+  const [sortMode, setSortMode] = useState<SortMode>('priority')
+
+  async function loadAll() {
+    const [roomsRes, tasksRes] = await Promise.all([
+      supabase.from('rooms').select('*'),
+      supabase.from('tasks').select('*, subtasks(*)'),
+    ])
+    setRooms((roomsRes.data ?? []) as Room[])
+    setTasks((tasksRes.data ?? []) as TaskWithSubtasks[])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadAll()
+  }, [])
+
+  async function handleComplete(task: TaskWithSubtasks) {
+    await completeTask(task)
+    loadAll()
+  }
+
+  const cleanlinessByRoom = useMemo(() => {
+    const map: Record<string, number | null> = {}
+    for (const room of rooms) {
+      map[room.id] = computeRoomCleanliness(tasks.filter((t) => t.room_id === room.id))
+    }
+    return map
+  }, [rooms, tasks])
+
+  const groups = useMemo(() => {
+    const sortedRooms = [...rooms].sort((a, b) => {
+      const ca = cleanlinessByRoom[a.id] ?? null
+      const cb = cleanlinessByRoom[b.id] ?? null
+      if (ca === null && cb === null) return a.name.localeCompare(b.name, 'ru')
+      if (ca === null) return 1
+      if (cb === null) return -1
+      return ca - cb
+    })
+
+    return sortedRooms
+      .map((room) => {
+        const clean = cleanlinessByRoom[room.id] ?? null
+        const roomTasks = tasks.filter((t) => t.room_id === room.id)
+
+        const compare = (a: TaskWithSubtasks, b: TaskWithSubtasks): number => {
+          const doneA = isToday(a.last_completed_at) ? 1 : 0
+          const doneB = isToday(b.last_completed_at) ? 1 : 0
+          if (doneA !== doneB) return doneA - doneB // невыполненные сверху
+
+          if (sortMode === 'fastest') return a.duration_minutes - b.duration_minutes
+          if (sortMode === 'easiest') {
+            return (
+              DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty] ||
+              a.duration_minutes - b.duration_minutes
+            )
+          }
+          return taskPriority(b, clean) - taskPriority(a, clean)
+        }
+
+        return { room, clean, tasks: [...roomTasks].sort(compare) }
+      })
+      .filter((group) => group.tasks.length > 0)
+  }, [rooms, tasks, sortMode, cleanlinessByRoom])
+
+  return (
+    <div className="px-5 pt-6">
+      <div className="flex items-center gap-3 mb-5">
+        <button
+          onClick={onBack}
+          className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-700 cursor-pointer active:scale-95 transition"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <h1 className="text-2xl font-semibold text-neutral-900">Свободный режим</h1>
+      </div>
+
+      <div className="flex gap-2 mb-5">
+        {SORT_OPTIONS.map((opt) => (
+          <button
+            key={opt.value}
+            onClick={() => setSortMode(opt.value)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer ${
+              sortMode === opt.value ? 'bg-forest-500 text-white' : 'bg-white text-neutral-500'
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Загружаем задачи…</p>
+      ) : (
+        groups.map(({ room, clean, tasks: roomTasks }) => (
+          <div key={room.id} className="mb-5">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-lg bg-forest-100 text-forest-700 flex items-center justify-center">
+                <RoomIcon icon={room.icon} size={16} />
+              </div>
+              <span className="font-semibold text-neutral-900">{room.name}</span>
+              {clean !== null && (
+                <span className={`text-xs font-semibold ${cleanlinessTextClass(clean)}`}>
+                  {clean}%
+                </span>
+              )}
+            </div>
+
+            {roomTasks.map((task) => {
+              const done = isToday(task.last_completed_at)
+              const info = difficultyInfo(task.difficulty)
+              return (
+                <div
+                  key={task.id}
+                  className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3"
+                >
+                  <button
+                    onClick={() => handleComplete(task)}
+                    disabled={done}
+                    className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
+                      done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                    }`}
+                  >
+                    {done ? '✓' : ''}
+                  </button>
+                  <div className="flex-1 min-w-0">
+                    <div
+                      className={`font-medium ${
+                        done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                      }`}
+                    >
+                      <span className={done ? 'strike-center' : ''}>{task.title}</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 items-center mt-1">
+                      <span className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${info.tagClass}`}>
+                        {info.label}
+                      </span>
+                      <span className="text-[11px] text-neutral-500">
+                        {task.duration_minutes} мин
+                      </span>
+                      {!done && isOverdue(task) && (
+                        <span className="text-[11px] px-2 py-0.5 rounded-md font-medium bg-accent-orange/15 text-accent-orange">
+                          просрочено
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        ))
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/HomeScreen.tsx">
+import { useEffect, useState } from 'react'
+import { Plus, RefreshCw } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import RoomCard from '../components/RoomCard'
+import RoomModal from '../components/RoomModal'
+import RoomScreen from './RoomScreen'
+import DailyTaskCard from '../components/DailyTaskCard'
+import EnergyModal, { ENERGY_OPTIONS } from '../components/EnergyModal'
+import { computeRoomCleanliness } from '../lib/cleanliness'
+import {
+  loadDailyPlan,
+  regenerateDailyPlan,
+  completeTask,
+  toggleSubtask,
+  type Energy,
+  type DailyItem,
+} from '../lib/daily'
+import type { Room, Subtask, Task } from '../types'
+
+export default function HomeScreen() {
+  const [rooms, setRooms] = useState<Room[]>([])
+  const [cleanliness, setCleanliness] = useState<Record<string, number | null>>({})
+  const [loading, setLoading] = useState(true)
+
+  const [energy, setEnergy] = useState<Energy>('normal')
+  const [energyModalOpen, setEnergyModalOpen] = useState(false)
+  const [dailyItems, setDailyItems] = useState<DailyItem[]>([])
+  const [loadingDaily, setLoadingDaily] = useState(true)
+
+  const [roomModalOpen, setRoomModalOpen] = useState(false)
+  const [editingRoom, setEditingRoom] = useState<Room | null>(null)
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null)
+
+  async function loadAll() {
+    const [roomsRes, tasksRes] = await Promise.all([
+      supabase.from('rooms').select('*'),
+      supabase.from('tasks').select('*'),
+    ])
+
+    const roomsData = (roomsRes.data ?? []) as Room[]
+    const tasksData = (tasksRes.data ?? []) as Task[]
+
+    const map: Record<string, number | null> = {}
+    for (const room of roomsData) {
+      map[room.id] = computeRoomCleanliness(tasksData.filter((t) => t.room_id === room.id))
+    }
+
+    setRooms(roomsData)
+    setCleanliness(map)
+    setLoading(false)
+  }
+
+  async function refreshDaily(regenerate: boolean, e: Energy) {
+    setLoadingDaily(true)
+    const items = regenerate ? await regenerateDailyPlan(e) : await loadDailyPlan(e)
+    setDailyItems(items)
+    setLoadingDaily(false)
+  }
+
+  useEffect(() => {
+    loadAll()
+    refreshDaily(false, 'normal')
+  }, [])
+
+  function handleEnergySelect(e: Energy) {
+    setEnergyModalOpen(false)
+    setEnergy(e)
+    refreshDaily(true, e)
+  }
+
+  async function handleComplete(item: DailyItem) {
+    await completeTask(item.task)
+    setDailyItems((prev) =>
+      prev.map((i) =>
+        i.planId === item.planId
+          ? {
+              ...i,
+              isCompleted: true,
+              task: {
+                ...i.task,
+                subtasks: i.task.subtasks.map((s) => ({ ...s, is_completed: true })),
+              },
+            }
+          : i,
+      ),
+    )
+    loadAll()
+  }
+
+  async function handleToggleSubtask(item: DailyItem, subtask: Subtask) {
+    const next = await toggleSubtask(subtask)
+
+    const current = dailyItems.find((i) => i.planId === item.planId)
+    if (!current) return
+
+    const updatedSubtasks = current.task.subtasks.map((s) =>
+      s.id === subtask.id ? { ...s, is_completed: next } : s,
+    )
+
+    setDailyItems((prev) =>
+      prev.map((i) =>
+        i.planId === item.planId ? { ...i, task: { ...i.task, subtasks: updatedSubtasks } } : i,
+      ),
+    )
+
+    if (next && updatedSubtasks.every((s) => s.is_completed)) {
+      await handleComplete(item)
+    }
+  }
+
+  const sortedRooms = [...rooms].sort((a, b) => {
+    const ca = cleanliness[a.id] ?? null
+    const cb = cleanliness[b.id] ?? null
+    if (ca === null && cb === null) return a.name.localeCompare(b.name, 'ru')
+    if (ca === null) return 1
+    if (cb === null) return -1
+    return ca - cb
+  })
+
+  const roomName = (id: string) => rooms.find((r) => r.id === id)?.name ?? ''
+
+  const remainingMinutes = dailyItems
+    .filter((i) => !i.isCompleted)
+    .reduce((sum, i) => sum + i.task.duration_minutes, 0)
+
+  const allDone = dailyItems.length > 0 && dailyItems.every((i) => i.isCompleted)
+
+  const energyMeta = ENERGY_OPTIONS.find((o) => o.value === energy) ?? ENERGY_OPTIONS[1]
+  const EnergyIcon = energyMeta.icon
+
+  const hour = new Date().getHours()
+  const greeting =
+    hour < 6 ? 'Доброй ночи' : hour < 12 ? 'Доброе утро' : hour < 18 ? 'Добрый день' : 'Добрый вечер'
+
+  const date = new Date().toLocaleDateString('ru-RU', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  })
+
+  if (selectedRoom) {
+    return (
+      <RoomScreen room={selectedRoom} onBack={() => setSelectedRoom(null)} onChanged={loadAll} />
+    )
+  }
+
+  return (
+    <div className="px-5 pt-4">
+      <p className="text-base font-semibold text-neutral-900 mb-4">
+        {greeting} <span className="text-neutral-500 font-normal">· {date}</span>
+      </p>
+
+      {/* Дейлики */}
+      <div className="bg-white rounded-2xl px-5 py-2 shadow-sm mb-4">
+        <div className="flex items-center justify-between pt-3 pb-1">
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-neutral-900">Сегодня</h2>
+            <button
+              onClick={() => setEnergyModalOpen(true)}
+              className="flex items-center gap-1 rounded-full bg-forest-100 text-forest-700 text-xs font-semibold px-2.5 py-1 cursor-pointer active:scale-95 transition"
+            >
+              <EnergyIcon size={14} />
+              {energyMeta.label}
+            </button>
+          </div>
+          <div className="flex items-center gap-2">
+            {!loadingDaily && !allDone && dailyItems.length > 0 && (
+              <span className="text-xs text-neutral-500">≈ {remainingMinutes} мин</span>
+            )}
+            <button
+              onClick={() => refreshDaily(true, energy)}
+              title="Пересобрать план"
+              className="text-neutral-300 hover:text-forest-700 p-1 cursor-pointer transition-colors"
+            >
+              <RefreshCw size={16} className={loadingDaily ? 'animate-spin' : ''} />
+            </button>
+          </div>
+        </div>
+
+        {loadingDaily ? (
+          <p className="text-sm text-neutral-500 py-4">Подбираем задачи…</p>
+        ) : allDone ? (
+          <p className="text-sm text-forest-700 font-medium py-4">Всё готово на сегодня! 🎉</p>
+        ) : dailyItems.length === 0 ? (
+          <p className="text-sm text-neutral-500 py-4">
+            Дел нет — в доме порядок. Добавь задачи в комнаты.
+          </p>
+        ) : (
+          dailyItems.map((item) => (
+            <DailyTaskCard
+              key={item.planId}
+              item={item}
+              roomName={roomName(item.task.room_id)}
+              onComplete={() => handleComplete(item)}
+              onToggleSubtask={(s) => handleToggleSubtask(item, s)}
+            />
+          ))
+        )}
+      </div>
+
+      {/* Комнаты */}
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-lg font-semibold text-neutral-900">Комнаты</h2>
+        <button
+          onClick={() => {
+            setEditingRoom(null)
+            setRoomModalOpen(true)
+          }}
+          className="w-9 h-9 rounded-full bg-forest-500 text-white flex items-center justify-center shadow-[0_2px_8px_rgba(55,85,52,0.3)] cursor-pointer active:scale-95 transition"
+        >
+          <Plus size={20} />
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Загружаем комнаты…</p>
+      ) : (
+        sortedRooms.map((room) => (
+          <RoomCard
+            key={room.id}
+            room={room}
+            cleanliness={cleanliness[room.id] ?? null}
+            onOpen={() => setSelectedRoom(room)}
+            onEdit={() => {
+              setEditingRoom(room)
+              setRoomModalOpen(true)
+            }}
+          />
+        ))
+      )}
+
+      {roomModalOpen && (
+        <RoomModal
+          room={editingRoom}
+          onClose={() => setRoomModalOpen(false)}
+          onSaved={() => {
+            setRoomModalOpen(false)
+            loadAll()
+          }}
+        />
+      )}
+
+      {energyModalOpen && (
+        <EnergyModal
+          current={energy}
+          onSelect={handleEnergySelect}
+          onClose={() => setEnergyModalOpen(false)}
+        />
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/RoomScreen.tsx">
+import { useEffect, useState } from 'react'
+import { ArrowLeft, Plus } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import TaskCard from '../components/TaskCard'
+import TaskModal from '../components/TaskModal'
+import RoomIcon from '../components/RoomIcon'
+import { completeTask } from '../lib/daily'
+import type { Room, TaskWithSubtasks } from '../types'
+
+interface RoomScreenProps {
+  room: Room
+  onBack: () => void
+  onChanged: () => void
+}
+
+export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps) {
+  const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
+  const [loading, setLoading] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingTask, setEditingTask] = useState<TaskWithSubtasks | null>(null)
+
+  async function loadTasks() {
+    const { data, error } = await supabase
+      .from('tasks')
+      .select('*, subtasks(*)')
+      .eq('room_id', room.id)
+      .order('created_at')
+
+    if (!error) setTasks((data ?? []) as TaskWithSubtasks[])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadTasks()
+  }, [room.id])
+
+  async function handleComplete(task: TaskWithSubtasks) {
+    await completeTask(task)
+    loadTasks()
+    onChanged()
+  }
+
+  return (
+    <div className="px-5 pt-6">
+      <div className="flex items-center gap-3 mb-5">
+        <button
+          onClick={onBack}
+          className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-700 cursor-pointer active:scale-95 transition"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <div className="w-11 h-11 rounded-xl bg-forest-100 text-forest-700 flex items-center justify-center">
+          <RoomIcon icon={room.icon} />
+        </div>
+        <h1 className="text-2xl font-semibold text-neutral-900 flex-1">{room.name}</h1>
+        <button
+          onClick={() => {
+            setEditingTask(null)
+            setModalOpen(true)
+          }}
+          className="w-9 h-9 rounded-full bg-forest-500 text-white flex items-center justify-center shadow-[0_2px_8px_rgba(55,85,52,0.3)] cursor-pointer active:scale-95 transition"
+        >
+          <Plus size={20} />
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Загружаем задачи…</p>
+      ) : tasks.length === 0 ? (
+        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+          <p className="text-sm text-neutral-500 mb-3">В этой комнате пока нет задач</p>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="text-sm font-semibold text-forest-700 cursor-pointer"
+          >
+            Добавить первую
+          </button>
+        </div>
+      ) : (
+        tasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            onComplete={() => handleComplete(task)}
+            onEdit={() => {
+              setEditingTask(task)
+              setModalOpen(true)
+            }}
+          />
+        ))
+      )}
+
+      {modalOpen && (
+        <TaskModal
+          room={room}
+          task={editingTask}
+          onClose={() => setModalOpen(false)}
+          onSaved={() => {
+            setModalOpen(false)
+            loadTasks()
+            onChanged()
+          }}
+        />
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/ScenariosScreen.tsx">
+import { useState } from 'react'
+import {
+  ListChecks, Target, Users, Timer, Sparkles, PartyPopper, CalendarDays,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import FreeModeScreen from './FreeModeScreen'
+import ScenarioRunScreen from '../components/ScenarioRunScreen'
+import SeasonalScreen from './SeasonalScreen'
+import type { ScenarioKind } from '../lib/scenarios'
+
+const RUN_CARDS: {
+  kind: ScenarioKind
+  title: string
+  subtitle: string
+  icon: LucideIcon
+  bg: string
+}[] = [
+  {
+    kind: 'one',
+    title: 'Одна задача',
+    subtitle: 'Самая нужная задача прямо сейчас',
+    icon: Target,
+    bg: 'bg-forest-100 text-forest-700',
+  },
+  {
+    kind: 'guests',
+    title: 'Гости через час',
+    subtitle: 'Видимые зоны, быстрая уборка · ~20 мин',
+    icon: Users,
+    bg: 'bg-accent-orange/15 text-accent-orange',
+  },
+  {
+    kind: 'quick',
+    title: 'Быстрая уборка',
+    subtitle: 'Самые срочные задачи · 15 мин',
+    icon: Timer,
+    bg: 'bg-forest-100 text-forest-700',
+  },
+  {
+    kind: 'deep',
+    title: 'Генеральная',
+    subtitle: 'Большая уборка · до 2 часов',
+    icon: Sparkles,
+    bg: 'bg-accent-peach/40 text-neutral-700',
+  },
+  {
+    kind: 'party',
+    title: 'После вечеринки',
+    subtitle: 'Кухня, гостиная, прихожая · 45 мин',
+    icon: PartyPopper,
+    bg: 'bg-accent-peach/40 text-neutral-700',
+  },
+]
+
+type View =
+  | { type: 'list' }
+  | { type: 'free' }
+  | { type: 'seasonal' }
+  | { type: 'run'; kind: ScenarioKind; title: string; subtitle: string }
+
+export default function ScenariosScreen() {
+  const [view, setView] = useState<View>({ type: 'list' })
+
+  if (view.type === 'free') {
+    return <FreeModeScreen onBack={() => setView({ type: 'list' })} />
+  }
+
+  if (view.type === 'seasonal') {
+    return <SeasonalScreen onBack={() => setView({ type: 'list' })} />
+  }
+
+  if (view.type === 'run') {
+    return (
+      <ScenarioRunScreen
+        kind={view.kind}
+        title={view.title}
+        subtitle={view.subtitle}
+        onBack={() => setView({ type: 'list' })}
+      />
+    )
+  }
+
+  return (
+    <div className="px-5 pt-6">
+      <p className="text-sm text-neutral-500 mb-1">Быстрый старт</p>
+      <h1 className="text-2xl font-semibold text-neutral-900 mb-5">Сценарии</h1>
+
+      <div
+        onClick={() => setView({ type: 'free' })}
+        className="bg-white rounded-2xl p-5 shadow-sm mb-3 cursor-pointer active:scale-[0.99] transition"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-11 h-11 rounded-xl bg-forest-100 text-forest-700 flex items-center justify-center">
+            <ListChecks size={22} />
+          </div>
+          <div className="font-semibold text-neutral-900">Свободный режим</div>
+        </div>
+        <p className="text-sm text-neutral-500">
+          Все задачи дома, грязные комнаты сверху. Отмечай что хочешь.
+        </p>
+      </div>
+
+      {RUN_CARDS.map((card) => {
+        const Icon = card.icon
+        return (
+          <div
+            key={card.kind}
+            onClick={() =>
+              setView({ type: 'run', kind: card.kind, title: card.title, subtitle: card.subtitle })
+            }
+            className="bg-white rounded-2xl p-5 shadow-sm mb-3 cursor-pointer active:scale-[0.99] transition"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${card.bg}`}>
+                <Icon size={22} />
+              </div>
+              <div className="font-semibold text-neutral-900">{card.title}</div>
+            </div>
+            <p className="text-sm text-neutral-500">{card.subtitle}</p>
+          </div>
+        )
+      })}
+
+      <div
+        onClick={() => setView({ type: 'seasonal' })}
+        className="bg-white rounded-2xl p-5 shadow-sm mb-3 cursor-pointer active:scale-[0.99] transition"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-11 h-11 rounded-xl bg-forest-100 text-forest-700 flex items-center justify-center">
+            <CalendarDays size={22} />
+          </div>
+          <div className="font-semibold text-neutral-900">Сезонные задачи</div>
+        </div>
+        <p className="text-sm text-neutral-500">
+          Окна, кондиционер, гардероб — когда придёт время.
+        </p>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/SeasonalScreen.tsx">
+import { useEffect, useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { supabase } from '../lib/supabase'
+import { completeTask, isOverdue, isToday, taskPriority } from '../lib/daily'
+import { computeRoomCleanliness } from '../lib/cleanliness'
+import { difficultyInfo } from '../lib/difficulty'
+import type { Room, TaskWithSubtasks } from '../types'
+
+function daysLeft(task: TaskWithSubtasks): number {
+  const ref = task.last_completed_at ?? task.created_at
+  const days = (Date.now() - new Date(ref).getTime()) / 86400000
+  return Math.ceil(task.frequency_days - days)
+}
+
+interface SeasonalScreenProps {
+  onBack: () => void
+}
+
+export default function SeasonalScreen({ onBack }: SeasonalScreenProps) {
+  const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
+  const [rooms, setRooms] = useState<Room[]>([])
+  const [loading, setLoading] = useState(true)
+
+  async function loadAll() {
+    const [roomsRes, tasksRes] = await Promise.all([
+      supabase.from('rooms').select('*'),
+      supabase.from('tasks').select('*, subtasks(*)').eq('is_seasonal', true),
+    ])
+    setRooms((roomsRes.data ?? []) as Room[])
+    setTasks((tasksRes.data ?? []) as TaskWithSubtasks[])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadAll()
+  }, [])
+
+  async function handleComplete(task: TaskWithSubtasks) {
+    await completeTask(task)
+    loadAll()
+  }
+
+  const cleanByRoom = new Map<string, number | null>()
+  for (const room of rooms) {
+    cleanByRoom.set(
+      room.id,
+      computeRoomCleanliness(tasks.filter((t) => t.room_id === room.id)),
+    )
+  }
+
+  const sorted = [...tasks].sort(
+    (a, b) =>
+      taskPriority(b, cleanByRoom.get(b.room_id) ?? null) -
+      taskPriority(a, cleanByRoom.get(a.room_id) ?? null),
+  )
+
+  const roomName = (id: string) => rooms.find((r) => r.id === id)?.name ?? ''
+
+  return (
+    <div className="px-5 pt-6">
+      <div className="flex items-center gap-3 mb-5">
+        <button
+          onClick={onBack}
+          className="w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-neutral-700 cursor-pointer active:scale-95 transition"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <h1 className="text-2xl font-semibold text-neutral-900">Сезонные задачи</h1>
+      </div>
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Загружаем…</p>
+      ) : sorted.length === 0 ? (
+        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+          <p className="text-sm text-neutral-500">
+            Пока нет сезонных задач. Создай задачу с галочкой "Сезонная".
+          </p>
+        </div>
+      ) : (
+        sorted.map((task) => {
+          const done = isToday(task.last_completed_at)
+          const info = difficultyInfo(task.difficulty)
+          const left = daysLeft(task)
+          return (
+            <div
+              key={task.id}
+              className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3"
+            >
+              <button
+                onClick={() => handleComplete(task)}
+                disabled={done}
+                className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
+                  done ? 'bg-forest-500 border-forest-500' : 'border-neutral-300'
+                }`}
+              >
+                {done ? '✓' : ''}
+              </button>
+              <div className="flex-1 min-w-0">
+                <div
+                  className={`font-medium ${
+                    done ? 'strike-center text-neutral-500' : 'text-neutral-900'
+                  }`}
+                >
+                  <span className={done ? 'strike-center' : ''}>{task.title}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 items-center mt-1">
+                  <span className={`text-[11px] px-2 py-0.5 rounded-md font-medium ${info.tagClass}`}>
+                    {info.label}
+                  </span>
+                  <span className="text-[11px] text-neutral-500">{roomName(task.room_id)}</span>
+                  {!done &&
+                    (isOverdue(task) ? (
+                      <span className="text-[11px] px-2 py-0.5 rounded-md font-medium bg-accent-orange/15 text-accent-orange">
+                        пора!
+                      </span>
+                    ) : (
+                      <span className="text-[11px] text-neutral-500">через {left} дн</span>
+                    ))}
+                </div>
+              </div>
+            </div>
+          )
+        })
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/SettingsScreen.tsx">
+export default function SettingsScreen() {
+  return (
+    <div className="px-5 pt-6">
+      <p className="text-sm text-neutral-500 mb-1">Настройки</p>
+      <h1 className="text-2xl font-semibold text-neutral-900 mb-5">Профиль</h1>
+
+      <div className="bg-white rounded-2xl p-5 shadow-sm">
+        <p className="text-sm text-neutral-500">
+          Уведомления, тёмная тема, пауза — этапы 11–12
+        </p>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="src/screens/StatsScreen.tsx">
+import { useEffect, useState } from 'react'
+import { supabase } from '../lib/supabase'
+import RoomIcon from '../components/RoomIcon'
+import {
+  computeRoomCleanliness,
+  cleanlinessBarClass,
+  cleanlinessTextClass,
+} from '../lib/cleanliness'
+import type { Room, Task, TaskHistory } from '../types'
+
+const DAY_LABELS = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+
+function dateStr(d: Date): string {
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
+
+function sameDay(a: Date, b: Date): boolean {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  )
+}
+
+interface PlanRow {
+  is_completed: boolean
+  plan_date: string
+}
+
+export default function StatsScreen() {
+  const [history, setHistory] = useState<TaskHistory[]>([])
+  const [plans, setPlans] = useState<PlanRow[]>([])
+  const [rooms, setRooms] = useState<Room[]>([])
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function load() {
+      const [h, p, r, t] = await Promise.all([
+        supabase.from('task_history').select('*'),
+        supabase.from('daily_plans').select('is_completed, plan_date'),
+        supabase.from('rooms').select('*'),
+        supabase.from('tasks').select('*'),
+      ])
+      setHistory((h.data ?? []) as TaskHistory[])
+      setPlans((p.data ?? []) as PlanRow[])
+      setRooms((r.data ?? []) as Room[])
+      setTasks((t.data ?? []) as Task[])
+      setLoading(false)
+    }
+    load()
+  }, [])
+
+  const now = new Date()
+  const weekAgo = new Date(now.getTime() - 7 * 86400000)
+
+  // За последние 7 дней
+  const weekHistory = history.filter((h) => new Date(h.completed_at) >= weekAgo)
+  const tasksWeek = weekHistory.length
+  const minutesWeek = weekHistory.reduce((sum, h) => sum + (h.duration_minutes ?? 0), 0)
+  const hoursWeek = (minutesWeek / 60).toFixed(1).replace('.', ',')
+
+  // Выполняемость дейликов за 7 дней
+  const weekStart = dateStr(weekAgo)
+  const weekPlans = plans.filter((p) => p.plan_date >= weekStart)
+  const completionRate =
+    weekPlans.length > 0
+      ? Math.round((weekPlans.filter((p) => p.is_completed).length / weekPlans.length) * 100)
+      : 0
+
+  // Средняя чистота дома
+  const cleanByRoom = rooms.map((room) => ({
+    room,
+    value: computeRoomCleanliness(tasks.filter((t) => t.room_id === room.id)),
+  }))
+  const cleanValues = cleanByRoom
+    .map((c) => c.value)
+    .filter((v): v is number => v !== null)
+  const avgCleanliness = cleanValues.length
+    ? Math.round(cleanValues.reduce((a, b) => a + b, 0) / cleanValues.length)
+    : 0
+
+  // График: последние 7 дней
+  const days = [...Array(7)].map((_, i) => {
+    const d = new Date(now.getTime() - (6 - i) * 86400000)
+    const count = history.filter((h) => sameDay(new Date(h.completed_at), d)).length
+    return { label: DAY_LABELS[d.getDay()], count }
+  })
+  const maxCount = Math.max(...days.map((d) => d.count), 1)
+
+  return (
+    <div className="px-5 pt-6">
+      <p className="text-sm text-neutral-500 mb-1">Твой прогресс</p>
+      <h1 className="text-2xl font-semibold text-neutral-900 mb-5">Статистика</h1>
+
+      {loading ? (
+        <p className="text-sm text-neutral-500">Считаем…</p>
+      ) : (
+        <>
+          <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className="text-2xl font-bold text-neutral-900">{tasksWeek}</div>
+              <div className="text-xs text-neutral-500 mt-1">задач за 7 дней</div>
+            </div>
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className="text-2xl font-bold text-neutral-900">{hoursWeek} ч</div>
+              <div className="text-xs text-neutral-500 mt-1">времени на уборку</div>
+            </div>
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className="text-2xl font-bold text-forest-700">{completionRate}%</div>
+              <div className="text-xs text-neutral-500 mt-1">дейлики выполнены</div>
+            </div>
+            <div className="bg-white rounded-2xl p-4 shadow-sm">
+              <div className={`text-2xl font-bold ${cleanlinessTextClass(avgCleanliness)}`}>
+                {avgCleanliness}%
+              </div>
+              <div className="text-xs text-neutral-500 mt-1">средняя чистота</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-5 shadow-sm mb-4">
+            <div className="text-base font-semibold text-neutral-900 mb-4">
+              Активность за неделю
+            </div>
+            <div className="flex items-end gap-2 h-24">
+              {days.map((d, i) => (
+                <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                  <div
+                    className={`w-full rounded-md ${d.count > 0 ? 'bg-forest-500' : 'bg-neutral-100'}`}
+                    style={{ height: `${Math.max((d.count / maxCount) * 100, 6)}%` }}
+                  />
+                  <span className="text-[10px] text-neutral-500">{d.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-5 shadow-sm">
+            <div className="text-base font-semibold text-neutral-900 mb-4">Чистота по комнатам</div>
+            {cleanByRoom.map(({ room, value }) => (
+              <div key={room.id} className="flex items-center gap-3 mb-3 last:mb-0">
+                <div className="w-9 h-9 rounded-lg bg-forest-100 text-forest-700 flex items-center justify-center shrink-0">
+                  <RoomIcon icon={room.icon} size={18} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="font-medium text-neutral-900">{room.name}</span>
+                    <span className={value !== null ? cleanlinessTextClass(value) : 'text-neutral-500'}>
+                      {value !== null ? `${value}%` : '—'}
+                    </span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-neutral-100 overflow-hidden">
+                    {value !== null && (
+                      <div
+                        className={`h-full rounded-full ${cleanlinessBarClass(value)}`}
+                        style={{ width: `${value}%` }}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+</file>
+
+<file path="src/types/index.ts">
+// Типы данных приложения "Порядок"
+
+export interface Room {
+  id: string
+  name: string
+  icon: string
+  created_at: string
+}
+
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
+export interface Task {
+  id: string
+  room_id: string
+  title: string
+  description: string | null
+  difficulty: Difficulty
+  duration_minutes: number
+  frequency_days: number
+  is_seasonal: boolean
+  last_completed_at: string | null
+  created_at: string
+}
+
+export interface Subtask {
+  id: string
+  task_id: string
+  title: string
+  is_completed: boolean
+  created_at: string
+}
+
+export interface TaskHistory {
+  id: string
+  task_id: string
+  completed_at: string
+  duration_minutes: number | null
+}
+
+export interface UserSettings {
+  id: string
+  daily_tasks_count: number
+  reminder_time: string
+  notifications_enabled: boolean
+  smart_hints_enabled: boolean
+  dark_mode: boolean
+  vibration_enabled: boolean
+  sound_enabled: boolean
+  paused_until: string | null
+}
+
+// Экраны приложения
+export type Screen = 'home' | 'scenarios' | 'stats' | 'settings'
+
+export interface TaskWithSubtasks extends Task {
+  subtasks: Subtask[]
+}
+</file>
+
+<file path="src/App.tsx">
+import { useState } from 'react'
+import BottomNav from './components/BottomNav'
+import HomeScreen from './screens/HomeScreen'
+import ScenariosScreen from './screens/ScenariosScreen'
+import StatsScreen from './screens/StatsScreen'
+import SettingsScreen from './screens/SettingsScreen'
+import type { Screen } from './types'
+
+function App() {
+  const [screen, setScreen] = useState<Screen>('home')
+
+  return (
+    <div className="min-h-screen bg-neutral-50">
+      <div className="max-w-md mx-auto min-h-screen relative">
+        <main className="pb-20">
+          {screen === 'home' && <HomeScreen />}
+          {screen === 'scenarios' && <ScenariosScreen />}
+          {screen === 'stats' && <StatsScreen />}
+          {screen === 'settings' && <SettingsScreen />}
+        </main>
+        <BottomNav active={screen} onChange={setScreen} />
+      </div>
+    </div>
+  )
+}
+
+export default App
+</file>
+
+<file path="src/index.css">
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+
+  --color-forest-900: #0F2A1D;
+  --color-forest-700: #375534;
+  --color-forest-500: #6B9071;
+  --color-forest-300: #AEC3B0;
+  --color-forest-100: #E3EED4;
+
+  --color-neutral-50: #F5F3EF;
+  --color-neutral-100: #E8E6E1;
+  --color-neutral-300: #D0CDC8;
+  --color-neutral-500: #8A8A8A;
+  --color-neutral-700: #2D2D2D;
+  --color-neutral-900: #1A1A1A;
+
+  --color-accent-orange: #E07A5F;
+  --color-accent-peach: #F2CC8F;
+}
+
+html {
+  font-size: 17px;
+}
+
+/* Зачёркивание ровно по центру текста (обход бага метрик Manrope) */
+.strike-center {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  background-position: 0 58%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+</file>
+
+<file path="src/main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import '@fontsource/manrope/400.css'
+import '@fontsource/manrope/500.css'
+import '@fontsource/manrope/600.css'
+import '@fontsource/manrope/700.css'
+import '@fontsource/manrope/800.css'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+</file>
+
+<file path=".oxlintrc.json">
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+</file>
+
+<file path="full-mockup.html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanApp - Full Mockup</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #e8e6e1;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .phone-frame {
+            max-width: 375px;
+            width: 100%;
+            height: 750px;
+            background: #F5F3EF;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            color: #2D2D2D;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-bar {
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8A8A8A;
+            flex-shrink: 0;
+        }
+        
+        /* Screens */
+        .screen {
+            flex: 1;
+            overflow-y: auto;
+            display: none;
+            padding-bottom: 70px;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .screen::-webkit-scrollbar { display: none; }
+        
+        /* Header */
+        .header {
+            padding: 5px 20px 15px;
+        }
+        
+        .greeting {
+            font-size: 14px;
+            color: #8A8A8A;
+            margin-bottom: 4px;
+        }
+        
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+        
+        /* Energy Filter */
+        .energy-filter {
+            margin: 0 20px 15px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .energy-btn {
+            flex: 1;
+            padding: 10px 8px;
+            background: #FFFFFF;
+            border: 2px solid #E8E6E1;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            color: #8A8A8A;
+        }
+        
+        .energy-btn.active {
+            border-color: #6B9071;
+            background: #6B9071;
+            color: white;
+        }
+        
+        .energy-btn span {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        /* Daily Tasks */
+        .daily-section {
+            padding: 0 20px 20px;
+        }
+        
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1A1A1A;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title .hint {
+            font-size: 12px;
+            color: #8A8A8A;
+            font-weight: 400;
+        }
+        
+        .daily-card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .daily-task {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #F5F3EF;
+        }
+        
+        .daily-task:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .daily-task:first-child {
+            padding-top: 0;
+        }
+        
+        .task-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            border: 2px solid #D0CDC8;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+        
+        .task-check.done {
+            background: #6B9071;
+            border-color: #6B9071;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #1A1A1A;
+        }
+        
+        .task-title.done {
+            text-decoration: line-through;
+            color: #8A8A8A;
+        }
+        
+        .task-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .task-tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .tag-easy { background: #E8F5E9; color: #2E7D32; }
+        .tag-medium { background: #FFF3E0; color: #E65100; }
+        .tag-hard { background: #FFEBEE; color: #C62828; }
+        
+        .task-time {
+            font-size: 11px;
+            color: #8A8A8A;
+        }
+        
+        .task-room {
+            font-size: 11px;
+            color: #6B9071;
+        }
+        
+        /* Subtasks */
+        .subtasks {
+            margin-top: 8px;
+            padding-left: 36px;
+        }
+        
+        .subtask {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 13px;
+            color: #8A8A8A;
+        }
+        
+        .subtask-check {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1.5px solid #D0CDC8;
+            flex-shrink: 0;
+        }
+        
+        .subtask-check.done {
+            background: #6B9071;
+            border-color: #6B9071;
+        }
+        
+        .subtask.done {
+            text-decoration: line-through;
+        }
+        
+        /* Rooms */
+        .rooms-section {
+            padding: 0 20px 20px;
+        }
+        
+        .room-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .room-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #F5F3EF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .room-info {
+            flex: 1;
+        }
+        
+        .room-name {
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .room-last {
+            font-size: 11px;
+            color: #8A8A8A;
+        }
+        
+        .room-last.urgent {
+            color: #E07A5F;
+            font-weight: 500;
+        }
+        
+        /* Scenarios Screen */
+        .scenario-card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 18px;
+            margin: 0 20px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .scenario-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        
+        .scenario-icon.guest { background: #FFF3E0; }
+        .scenario-icon.one { background: #E3F2FD; }
+        .scenario-icon.template { background: #F3E5F5; }
+        .scenario-icon.season { background: #E8F5E9; }
+        
+        .scenario-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .scenario-desc {
+            font-size: 13px;
+            color: #8A8A8A;
+            line-height: 1.4;
+        }
+        
+        .scenario-meta {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #6B9071;
+            font-weight: 500;
+        }
+        
+        /* Stats Screen */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 20px 20px;
+        }
+        
+        .stat-card {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1A1A1A;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #8A8A8A;
+        }
+        
+        .week-chart {
+            margin: 0 20px 20px;
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .chart-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 80px;
+        }
+        
+        .chart-bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .chart-bar {
+            width: 100%;
+            background: #6B9071;
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+        }
+        
+        .chart-bar.empty {
+            background: #E8E6E1;
+        }
+        
+        .chart-day {
+            font-size: 10px;
+            color: #8A8A8A;
+        }
+        
+        /* Settings Screen */
+        .settings-section {
+            padding: 0 20px 20px;
+        }
+        
+        .settings-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8A8A8A;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+        
+        .settings-title:first-child {
+            margin-top: 0;
+        }
+        
+        .setting-item {
+            background: #FFFFFF;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #F5F3EF;
+        }
+        
+        .setting-item:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .setting-item:last-child {
+            border-radius: 0 0 12px 12px;
+            border-bottom: none;
+        }
+        
+        .setting-item:only-child {
+            border-radius: 12px;
+        }
+        
+        .setting-label {
+            font-size: 14px;
+            color: #1A1A1A;
+        }
+        
+        .toggle {
+            width: 44px;
+            height: 26px;
+            background: #D0CDC8;
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .toggle.on {
+            background: #6B9071;
+        }
+        
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .toggle.on::after {
+            transform: translateX(18px);
+        }
+        
+        .pause-btn {
+            margin: 0 20px 20px;
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        
+        .pause-btn-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #E07A5F;
+            margin-bottom: 4px;
+        }
+        
+        .pause-btn-desc {
+            font-size: 12px;
+            color: #8A8A8A;
+        }
+        
+        /* Bottom Nav */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            padding: 10px 0 15px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #E8E6E1;
+        }
+        
+        .nav-item {
+            padding: 8px 12px;
+            text-align: center;
+            cursor: pointer;
+            color: #B0B0B0;
+            transition: color 0.2s;
+        }
+        
+        .nav-item.active {
+            color: #375534;
+        }
+        
+        .nav-item span {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        
+        .nav-item label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 </span>
+        </div>
+        
+        <!-- Screen 1: Home -->
+        <div class="screen active" id="screen-home">
+            <div class="header">
+                <div class="greeting">Доброе утро, вторник</div>
+                <h1>Мой дом</h1>
+            </div>
+            
+            <!-- Energy Filter -->
+            <div class="energy-filter">
+                <div class="energy-btn active">
+                    <span></span>
+                    Мало сил
+                </div>
+                <div class="energy-btn">
+                    <span></span>
+                    Нормально
+                </div>
+                <div class="energy-btn">
+                    <span></span>
+                    Много
+                </div>
+            </div>
+            
+            <!-- Daily Tasks -->
+            <div class="daily-section">
+                <div class="section-title">
+                    Сегодня
+                    <span class="hint">2 из 3</span>
+                </div>
+                
+                <div class="daily-card">
+                    <div class="daily-task">
+                        <div class="task-check done">✓</div>
+                        <div class="task-content">
+                            <div class="task-title done">Протереть столешницу</div>
+                            <div class="task-meta">
+                                <span class="task-tag tag-easy">Легко</span>
+                                <span class="task-time">5 мин</span>
+                                <span class="task-room">Кухня</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="daily-task">
+                        <div class="task-check done">✓</div>
+                        <div class="task-content">
+                            <div class="task-title done">Вынести мусор</div>
+                            <div class="task-meta">
+                                <span class="task-tag tag-easy">Легко</span>
+                                <span class="task-time">3 мин</span>
+                                <span class="task-room">Кухня</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="daily-task">
+                        <div class="task-check"></div>
+                        <div class="task-content">
+                            <div class="task-title">Помыть раковину</div>
+                            <div class="task-meta">
+                                <span class="task-tag tag-medium">Средне</span>
+                                <span class="task-time">10 мин</span>
+                                <span class="task-room">Ванная</span>
+                            </div>
+                            <div class="subtasks">
+                                <div class="subtask done">
+                                    <div class="subtask-check done"></div>
+                                    Протереть кран
+                                </div>
+                                <div class="subtask">
+                                    <div class="subtask-check"></div>
+                                    Почистить слив
+                                </div>
+                                <div class="subtask">
+                                    <div class="subtask-check"></div>
+                                    Протереть зеркало
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rooms -->
+            <div class="rooms-section">
+                <div class="section-title">Комнаты</div>
+                
+                <div class="room-card">
+                    <div class="room-icon">🍳</div>
+                    <div class="room-info">
+                        <div class="room-name">Кухня</div>
+                        <div class="room-last">Убрано сегодня</div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-icon">🚿</div>
+                    <div class="room-info">
+                        <div class="room-name">Ванная</div>
+                        <div class="room-last urgent">5 дней назад</div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-icon">️</div>
+                    <div class="room-info">
+                        <div class="room-name">Гостиная</div>
+                        <div class="room-last">2 дня назад</div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-icon">🛏️</div>
+                    <div class="room-info">
+                        <div class="room-name">Спальня</div>
+                        <div class="room-last">Вчера</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Screen 2: Scenarios -->
+        <div class="screen" id="screen-scenarios">
+            <div class="header">
+                <div class="greeting">Быстрый старт</div>
+                <h1>Сценарии</h1>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <div class="scenario-icon guest"></div>
+                    <div class="scenario-title">Гости через час</div>
+                </div>
+                <div class="scenario-desc">Только критичные задачи: ванная, кухня, пыль на виду. ~20 минут.</div>
+                <div class="scenario-meta">4 задачи • 20 мин</div>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <div class="scenario-icon one"></div>
+                    <div class="scenario-title">Одна задача</div>
+                </div>
+                <div class="scenario-desc">Самая быстрая или самая нужная задача прямо сейчас.</div>
+                <div class="scenario-meta">1 задача • 5 мин</div>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <div class="scenario-icon template"></div>
+                    <div class="scenario-title">Шаблоны</div>
+                </div>
+                <div class="scenario-desc">Быстрая уборка 15 мин, генеральная 2 часа, после вечеринки.</div>
+                <div class="scenario-meta">3 шаблона</div>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <div class="scenario-icon season"></div>
+                    <div class="scenario-title">Сезонные задачи</div>
+                </div>
+                <div class="scenario-desc">Помыть окна, почистить кондиционер, перебрать гардероб.</div>
+                <div class="scenario-meta">2 задачи ждут</div>
+            </div>
+        </div>
+        
+        <!-- Screen 3: Stats -->
+        <div class="screen" id="screen-stats">
+            <div class="header">
+                <div class="greeting">Твой прогресс</div>
+                <h1>Статистика</h1>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Задач за неделю</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.2ч</div>
+                    <div class="stat-label">Время уборки</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">Выполнено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Дней подряд</div>
+                </div>
+            </div>
+            
+            <div class="week-chart">
+                <div class="chart-title">Задачи по дням</div>
+                <div class="chart-bars">
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 60%"></div>
+                        <div class="chart-day">Пн</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 80%"></div>
+                        <div class="chart-day">Вт</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 40%"></div>
+                        <div class="chart-day">Ср</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 100%"></div>
+                        <div class="chart-day">Чт</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar" style="height: 70%"></div>
+                        <div class="chart-day">Пт</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar empty" style="height: 20%"></div>
+                        <div class="chart-day">Сб</div>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar empty" style="height: 10%"></div>
+                        <div class="chart-day">Вс</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Screen 4: Settings -->
+        <div class="screen" id="screen-settings">
+            <div class="header">
+                <div class="greeting">Настройки</div>
+                <h1>Профиль</h1>
+            </div>
+            
+            <div class="pause-btn">
+                <div class="pause-btn-title"> Поставить на паузу</div>
+                <div class="pause-btn-desc">Отпуск или больничный — уведомления молчат</div>
+            </div>
+            
+            <div class="settings-section">
+                <div class="settings-title">Уведомления</div>
+                <div class="setting-item">
+                    <div class="setting-label">Напоминание о дейликах</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Умные подсказки</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Время напоминания</div>
+                    <div style="font-size: 14px; color: #8A8A8A;">09:00</div>
+                </div>
+                
+                <div class="settings-title">Внешний вид</div>
+                <div class="setting-item">
+                    <div class="setting-label">Тёмная тема</div>
+                    <div class="toggle"></div>
+                </div>
+                
+                <div class="settings-title">Звуки</div>
+                <div class="setting-item">
+                    <div class="setting-label">Вибро при завершении</div>
+                    <div class="toggle on"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">Звук при завершении</div>
+                    <div class="toggle on"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Nav -->
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="showScreen('home')">
+                <span></span>
+                <label>Дом</label>
+            </div>
+            <div class="nav-item" onclick="showScreen('scenarios')">
+                <span>⚡</span>
+                <label>Сценарии</label>
+            </div>
+            <div class="nav-item" onclick="showScreen('stats')">
+                <span>📊</span>
+                <label>Стата</label>
+            </div>
+            <div class="nav-item" onclick="showScreen('settings')">
+                <span></span>
+                <label>Настройки</label>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showScreen(name) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('screen-' + name).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Energy filter toggle
+        document.querySelectorAll('.energy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.energy-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Task check toggle
+        document.querySelectorAll('.task-check').forEach(check => {
+            check.addEventListener('click', function() {
+                this.classList.toggle('done');
+                this.textContent = this.classList.contains('done') ? '✓' : '';
+                const title = this.closest('.daily-task').querySelector('.task-title');
+                title.classList.toggle('done');
+            });
+        });
+        
+        // Toggle switches
+        document.querySelectorAll('.toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('on');
+            });
+        });
+    </script>
+</body>
+</html>
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0F2A1D" />
+    <meta name="description" content="Порядок — приложение для уборки дома по плану" />
+    <title>Порядок</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "poryadok",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^5.3.0",
+    "@supabase/supabase-js": "^2.112.3",
+    "lucide-react": "^1.31.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "oxlint": "^1.75.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0",
+    "vite-plugin-pwa": "^1.3.0"
+  }
+}
+</file>
+
+<file path="README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the Oxlint configuration
+
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+```
+
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+</file>
+
+<file path="tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "module": "nodenext",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="vite.config.ts">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { VitePWA } from 'vite-plugin-pwa'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
+      manifest: {
+        name: 'Порядок — уборка дома по плану',
+        short_name: 'Порядок',
+        description: 'Личное приложение для поддержания порядка в доме',
+        lang: 'ru',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#F5F3EF',
+        theme_color: '#0F2A1D',
+        icons: [
+          {
+            src: 'icons/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
+          }
+        ]
+      }
+    })
+  ]
+})
+</file>
+
+</files>

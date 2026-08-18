@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+
+  --color-forest-900: #0F2A1D;
+  --color-forest-700: #375534;
+  --color-forest-500: #6B9071;
+  --color-forest-300: #AEC3B0;
+  --color-forest-100: #E3EED4;
+
+  --color-neutral-50: #F5F3EF;
+  --color-neutral-100: #E8E6E1;
+  --color-neutral-300: #D0CDC8;
+  --color-neutral-500: #8A8A8A;
+  --color-neutral-700: #2D2D2D;
+  --color-neutral-900: #1A1A1A;
+
+  --color-accent-orange: #E07A5F;
+  --color-accent-peach: #F2CC8F;
+}
+
+html {
+  font-size: 17px;
+}
+
+/* Зачёркивание ровно по центру текста (обход бага метрик Manrope) */
+.strike-center {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  background-position: 0 58%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---------- Анимации ---------- */
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%) }
+  to { transform: translateY(0) }
+}
+@keyframes pop {
+  0% { transform: scale(0.7) }
+  60% { transform: scale(1.15) }
+  100% { transform: scale(1) }
+}
+
+.anim-fade { animation: fade-in 0.2s ease both }
+.anim-fade-up { animation: fade-up 0.25s ease both }
+.anim-sheet { animation: sheet-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.anim-pop { animation: pop 0.25s ease }
+
+/* ---------- Тёмная тема ----------
+   Точечные переопределения светлых утилит под .dark */
+.dark { color-scheme: dark; }
+
+.dark .bg-neutral-50 { background-color: #151B17; }
+.dark .bg-white { background-color: #1C231E; }
+.dark .bg-neutral-100 { background-color: #2A332C; }
+.dark .bg-neutral-300 { background-color: #3A453D; }
+.dark .bg-forest-100 { background-color: #223B2B; }
+.dark .bg-forest-100\/50 { background-color: rgba(174, 195, 176, 0.12); }
+.dark .bg-accent-peach { background-color: #7A5A33; }
+.dark .bg-accent-peach\/40 { background-color: rgba(242, 204, 143, 0.15); }
+
+.dark .text-neutral-900 { color: #ECEAE4; }
+.dark .text-neutral-700 { color: #C9CDC6; }
+.dark .text-neutral-500 { color: #98A29A; }
+.dark .text-neutral-300 { color: #5F6B62; }
+.dark .text-forest-700 { color: #AEC3B0; }
+
+.dark .border-neutral-100 { border-color: #262E28; }
+.dark .border-neutral-50 { border-color: #242B26; }
+.dark .border-neutral-300 { border-color: #4A554C; }
+
+.dark .shadow-sm { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
