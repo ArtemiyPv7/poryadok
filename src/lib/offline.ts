@@ -28,6 +28,10 @@ export function queueComplete(op: PendingComplete) {
   write([...read(), op])
 }
 
+export function pendingCount(): number {
+  return read().length
+}
+
 // Доотправляем отложенные выполнения при появлении сети
 export async function flushPending(): Promise<void> {
   const list = read()

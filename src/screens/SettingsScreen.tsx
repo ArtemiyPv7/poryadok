@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { applyTheme } from '../lib/theme'
+import { Pause, Play } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { supabase } from '../lib/supabase'
-import { loadSettings, setSettingsLocal } from '../lib/settings'
-import { Pause, Play } from 'lucide-react'
-import { previewSound, previewVibration } from '../lib/settings'
+import { loadSettings, setSettingsLocal, previewSound, previewVibration } from '../lib/settings'
+import { applyTheme } from '../lib/theme'
+import { APP_VERSION } from '../lib/version'
+import DevModal from '../components/DevModal'
 import type { UserSettings } from '../types'
 
 function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) {
@@ -46,6 +47,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 export default function SettingsScreen() {
   const [settings, setSettings] = useState<UserSettings | null>(null)
+  const [devOpen, setDevOpen] = useState(false)
 
   useEffect(() => {
     loadSettings().then((s) => setSettings(s))
@@ -60,7 +62,6 @@ export default function SettingsScreen() {
     await supabase.from('user_settings').update(patch).eq('id', settings.id)
   }
 
-  // При включении уведомлений сразу запрашиваем разрешение браузера
   async function toggleNotifications() {
     if (!settings) return
     const turningOn = !settings.notifications_enabled
@@ -102,7 +103,11 @@ export default function SettingsScreen() {
         onClick={togglePause}
         className="bg-white rounded-2xl p-4 shadow-sm mb-5 text-center cursor-pointer active:scale-[0.99] transition"
       >
-        <div className={`text-sm font-semibold mb-1 flex items-center justify-center gap-1.5 ${paused ? 'text-forest-700' : 'text-accent-orange'}`}>
+        <div
+          className={`text-sm font-semibold mb-1 flex items-center justify-center gap-1.5 ${
+            paused ? 'text-forest-700' : 'text-accent-orange'
+          }`}
+        >
           {paused ? <Play size={14} /> : <Pause size={14} />}
           {paused ? 'Снять с паузы' : 'Поставить на паузу'}
         </div>
@@ -179,6 +184,15 @@ export default function SettingsScreen() {
           <Toggle on={settings.dark_mode} onChange={() => update({ dark_mode: !settings.dark_mode })} />
         </Row>
       </Section>
+
+      <button
+        onClick={() => setDevOpen(true)}
+        className="block mx-auto text-[11px] text-neutral-300 mb-4 cursor-pointer"
+      >
+        Порядок v{APP_VERSION}
+      </button>
+
+      {devOpen && <DevModal onClose={() => setDevOpen(false)} />}
     </div>
   )
 }
