@@ -48,7 +48,7 @@ function App() {
             Офлайн — показываем сохранённые данные
           </div>
         )}
-        <main key={screen} className="pb-20 anim-fade">
+        <main key={screen} className="pb-28 anim-fade">
           {screen === 'home' && <HomeScreen />}
           {screen === 'scenarios' && <ScenariosScreen />}
           {screen === 'stats' && <StatsScreen />}

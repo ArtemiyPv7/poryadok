@@ -41,7 +41,16 @@ function playDing() {
   }
 }
 
+// Превью для настроек: включил тумблер — почувствовал эффект
+export function previewSound() {
+  playDing()
+}
+
+export function previewVibration() {
+  if ('vibrate' in navigator) navigator.vibrate(80)
+}
+
 export function playCompleteEffects() {
-  if (current?.vibration_enabled && 'vibrate' in navigator) navigator.vibrate(30)
+  if (current?.vibration_enabled && 'vibrate' in navigator) navigator.vibrate(80)
   if (current?.sound_enabled) playDing()
 }

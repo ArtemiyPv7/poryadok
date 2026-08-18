@@ -53,7 +53,7 @@ html {
   100% { transform: scale(1) }
 }
 
-.anim-fade { animation: fade-in 0.2s ease both }
+.anim-fade { animation: fade-in 0.2s ease }
 .anim-fade-up { animation: fade-up 0.25s ease both }
 .anim-sheet { animation: sheet-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both }
 .anim-pop { animation: pop 0.25s ease }

@@ -175,7 +175,16 @@ export default function HomeScreen() {
     const today = new Date().getDay()
     const max = Math.max(...counts)
     if (max >= 3 && counts[today] === max) {
-      const weekday = new Date().toLocaleDateString('ru-RU', { weekday: 'long' })
+      const WEEKDAYS_DATIVE = [
+        'воскресеньям',
+        'понедельникам',
+        'вторникам',
+        'средам',
+        'четвергам',
+        'пятницам',
+        'субботам',
+      ]
+      const weekday = WEEKDAYS_DATIVE[new Date().getDay()]
       return `Исторически по ${weekday} у тебя больше всего уборок — сегодня отличный день.`
     }
     return null

@@ -3,6 +3,8 @@ import { applyTheme } from '../lib/theme'
 import type { ReactNode } from 'react'
 import { supabase } from '../lib/supabase'
 import { loadSettings, setSettingsLocal } from '../lib/settings'
+import { Pause, Play } from 'lucide-react'
+import { previewSound, previewVibration } from '../lib/settings'
 import type { UserSettings } from '../types'
 
 function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) {
@@ -100,8 +102,9 @@ export default function SettingsScreen() {
         onClick={togglePause}
         className="bg-white rounded-2xl p-4 shadow-sm mb-5 text-center cursor-pointer active:scale-[0.99] transition"
       >
-        <div className={`text-sm font-semibold mb-1 ${paused ? 'text-forest-700' : 'text-accent-orange'}`}>
-          {paused ? '▶ Снять с паузы' : '⏸ Поставить на паузу'}
+        <div className={`text-sm font-semibold mb-1 flex items-center justify-center gap-1.5 ${paused ? 'text-forest-700' : 'text-accent-orange'}`}>
+          {paused ? <Play size={14} /> : <Pause size={14} />}
+          {paused ? 'Снять с паузы' : 'Поставить на паузу'}
         </div>
         <div className="text-xs text-neutral-500">
           {paused ? 'Напоминания снова включены' : 'Отпуск или болезнь — напоминания молчат до завтра'}
@@ -152,13 +155,21 @@ export default function SettingsScreen() {
         <Row label="Вибро при завершении">
           <Toggle
             on={settings.vibration_enabled}
-            onChange={() => update({ vibration_enabled: !settings.vibration_enabled })}
+            onChange={() => {
+              const next = !settings.vibration_enabled
+              update({ vibration_enabled: next })
+              if (next) previewVibration()
+            }}
           />
         </Row>
         <Row label="Звук при завершении">
           <Toggle
             on={settings.sound_enabled}
-            onChange={() => update({ sound_enabled: !settings.sound_enabled })}
+            onChange={() => {
+              const next = !settings.sound_enabled
+              update({ sound_enabled: next })
+              if (next) previewSound()
+            }}
           />
         </Row>
       </Section>
@@ -168,10 +179,6 @@ export default function SettingsScreen() {
           <Toggle on={settings.dark_mode} onChange={() => update({ dark_mode: !settings.dark_mode })} />
         </Row>
       </Section>
-
-      <p className="text-[11px] text-neutral-500 text-center mb-4">
-        Тёмная тема заработает на этапе 12 — переключатель уже сохраняется.
-      </p>
     </div>
   )
 }

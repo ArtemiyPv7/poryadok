@@ -55,7 +55,7 @@ export default function RoomModal({ room, onClose, onSaved }: RoomModalProps) {
       onClick={onClose}
     >
       <div
-        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 anim-sheet"
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] max-h-[85vh] overflow-y-auto anim-sheet"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
