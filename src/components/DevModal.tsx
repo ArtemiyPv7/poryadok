@@ -64,6 +64,21 @@ export default function DevModal({ onClose }: DevModalProps) {
     refreshInfo()
   }
 
+  async function testPush() {
+  const res = await fetch(
+    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-push?test=1`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  )
+  const data = await res.json()
+  setInfo((s) => s + '\npush: ' + JSON.stringify(data))
+}
+
   function clearCache() {
     localStorage.removeItem('poryadok_cache_v1')
     localStorage.removeItem('poryadok_pending_completes')
@@ -113,6 +128,9 @@ export default function DevModal({ onClose }: DevModalProps) {
           </button>
           <button onClick={clearCache} className={BTN}>
             Очистить кэш
+          </button>
+          <button onClick={testPush} className={BTN}>
+            Тест push
           </button>
           <button onClick={resetTodayPlan} className={BTN}>
             Сбросить план

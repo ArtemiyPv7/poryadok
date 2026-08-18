@@ -1,5 +1,6 @@
 import { supabase } from './supabase'
 import { getSettings } from './settings'
+import { isPushSubscribed } from './push'
 
 function localDateStr(): string {
   const d = new Date()
@@ -26,6 +27,7 @@ async function showNotification(title: string, body: string) {
 
 // Проверяем, пора ли напомнить о дейликах
 export async function checkReminder(): Promise<void> {
+  if (isPushSubscribed()) return
   const settings = getSettings()
   if (!settings) return
   if (!settings.notifications_enabled) return

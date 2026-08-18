@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { supabase } from '../lib/supabase'
+import { subscribeToPush } from '../lib/push'
 import { loadSettings, setSettingsLocal, previewSound, previewVibration } from '../lib/settings'
 import { applyTheme } from '../lib/theme'
 import { APP_VERSION } from '../lib/version'
@@ -62,14 +63,14 @@ export default function SettingsScreen() {
     await supabase.from('user_settings').update(patch).eq('id', settings.id)
   }
 
-  async function toggleNotifications() {
-    if (!settings) return
-    const turningOn = !settings.notifications_enabled
-    if (turningOn && 'Notification' in window && Notification.permission === 'default') {
-      await Notification.requestPermission()
-    }
-    update({ notifications_enabled: turningOn })
+async function toggleNotifications() {
+  if (!settings) return
+  const turningOn = !settings.notifications_enabled
+  if (turningOn) {
+    await subscribeToPush() // спросит разрешение и создаст подписку
   }
+  update({ notifications_enabled: turningOn })
+}
 
   const todayStr = new Date().toISOString().slice(0, 10)
   const paused =
