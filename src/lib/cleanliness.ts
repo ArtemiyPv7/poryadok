@@ -9,10 +9,11 @@ export function taskFreshness(task: Task): number {
 
 // Чистота комнаты: средневзвешенное по времени задач, в процентах
 export function computeRoomCleanliness(tasks: Task[]): number | null {
-  if (tasks.length === 0) return null
-  const totalMinutes = tasks.reduce((sum, t) => sum + t.duration_minutes, 0)
+  const regular = tasks.filter((t) => !t.is_seasonal)
+  if (regular.length === 0) return null
+  const totalMinutes = regular.reduce((sum, t) => sum + t.duration_minutes, 0)
   if (totalMinutes === 0) return null
-  const weighted = tasks.reduce(
+  const weighted = regular.reduce(
     (sum, t) => sum + taskFreshness(t) * t.duration_minutes,
     0,
   )

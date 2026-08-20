@@ -18,6 +18,8 @@ export interface Task {
   duration_minutes: number
   frequency_days: number
   is_seasonal: boolean
+  due_month: number | null
+  due_day: number | null
   last_completed_at: string | null
   created_at: string
 }

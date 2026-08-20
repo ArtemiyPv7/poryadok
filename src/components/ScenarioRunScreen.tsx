@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronDown, ListChecks } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 import { buildScenario, type ScenarioKind } from '../lib/scenarios'
-import { completeTask } from '../lib/daily'
+import { completeTask, isToday, toggleSubtask } from '../lib/daily'
 import { difficultyInfo } from '../lib/difficulty'
-import type { TaskWithSubtasks } from '../types'
+import type { Subtask, TaskWithSubtasks } from '../types'
 
 interface ScenarioRunScreenProps {
   kind: ScenarioKind
@@ -20,13 +21,33 @@ export default function ScenarioRunScreen({
 }: ScenarioRunScreenProps) {
   const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
     setLoading(true)
     setDoneIds(new Set())
     const res = await buildScenario(kind)
-    setTasks(res.tasks)
+    const loaded = res.tasks
+
+    // Сброс "вчерашних" подзадач: задача снова актуальна, а все галочки стоят
+    const stale = loaded.filter(
+      (t) =>
+        !isToday(t.last_completed_at) &&
+        t.subtasks.length > 0 &&
+        t.subtasks.every((s) => s.is_completed),
+    )
+    if (stale.length > 0) {
+      await supabase
+        .from('subtasks')
+        .update({ is_completed: false })
+        .in('task_id', stale.map((t) => t.id))
+      for (const t of stale) {
+        t.subtasks = t.subtasks.map((s) => ({ ...s, is_completed: false }))
+      }
+    }
+
+    setTasks(loaded)
     setLoading(false)
   }, [kind])
 
@@ -34,9 +55,31 @@ export default function ScenarioRunScreen({
     load()
   }, [load])
 
+  function toggleExpanded(id: string) {
+    setExpandedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
   async function handleComplete(task: TaskWithSubtasks) {
     await completeTask(task)
     setDoneIds((prev) => new Set(prev).add(task.id))
+  }
+
+  async function handleToggleSubtask(task: TaskWithSubtasks, subtask: Subtask) {
+    const next = await toggleSubtask(subtask)
+    const updated = task.subtasks.map((s) =>
+      s.id === subtask.id ? { ...s, is_completed: next } : s,
+    )
+    setTasks((prev) => prev.map((t) => (t.id === task.id ? { ...t, subtasks: updated } : t)))
+
+    // Все подзадачи закрыты → задача выполнена
+    if (next && updated.every((s) => s.is_completed)) {
+      await handleComplete(task)
+    }
   }
 
   const remaining = tasks.filter((t) => !doneIds.has(t.id))
@@ -71,15 +114,17 @@ export default function ScenarioRunScreen({
         tasks.map((task) => {
           const done = doneIds.has(task.id)
           const info = difficultyInfo(task.difficulty)
+          const hasSubtasks = task.subtasks.length > 0
+          const expanded = expandedIds.has(task.id)
           return (
             <div
               key={task.id}
-              className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-center gap-3"
+              className="bg-white rounded-2xl p-4 shadow-sm mb-2 flex items-start gap-3"
             >
               <button
                 onClick={() => handleComplete(task)}
                 disabled={done}
-                className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 text-white text-sm transition cursor-pointer ${
+                className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 mt-0.5 text-white text-sm transition cursor-pointer ${
                   done ? 'bg-forest-500 border-forest-500 anim-pop' : 'border-neutral-300'
                 }`}
               >
@@ -94,8 +139,53 @@ export default function ScenarioRunScreen({
                     {info.label}
                   </span>
                   <span className="text-[11px] text-neutral-500">{task.duration_minutes} мин</span>
+                  {hasSubtasks && (
+                    <span className="text-[11px] text-neutral-500 flex items-center gap-1">
+                      <ListChecks size={12} />{' '}
+                      {task.subtasks.filter((s) => s.is_completed).length}/{task.subtasks.length}
+                    </span>
+                  )}
                 </div>
+                {hasSubtasks && expanded && (
+                  <div className="mt-2 space-y-1.5 pl-1">
+                    {task.subtasks.map((s) => (
+                      <button
+                        key={s.id}
+                        onClick={() => handleToggleSubtask(task, s)}
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <span
+                          className={`w-4 h-4 rounded border flex items-center justify-center text-[10px] text-white ${
+                            s.is_completed
+                              ? 'bg-forest-500 border-forest-500'
+                              : 'border-neutral-300'
+                          }`}
+                        >
+                          {s.is_completed ? '✓' : ''}
+                        </span>
+                        <span
+                          className={`text-sm ${
+                            s.is_completed ? 'strike-center text-neutral-500' : 'text-neutral-700'
+                          }`}
+                        >
+                          {s.title}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+              {hasSubtasks && (
+                <button
+                  onClick={() => toggleExpanded(task.id)}
+                  className="text-neutral-300 p-1 cursor-pointer shrink-0"
+                >
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform ${expanded ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              )}
             </div>
           )
         })

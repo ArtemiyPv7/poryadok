@@ -4,10 +4,10 @@ import { supabase } from '../lib/supabase'
 import TaskCard from '../components/TaskCard'
 import TaskModal from '../components/TaskModal'
 import RoomIcon from '../components/RoomIcon'
-import { completeTask, isToday } from '../lib/daily'
+import { completeTask, isToday, toggleSubtask } from '../lib/daily'
 import { isOnline } from '../lib/offline'
 import { readCache } from '../lib/cache'
-import type { Room, TaskWithSubtasks } from '../types'
+import type { Room, Subtask, TaskWithSubtasks } from '../types'
 
 interface RoomScreenProps {
   room: Room
@@ -35,7 +35,27 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
       .eq('room_id', room.id)
       .order('created_at')
 
-    if (!error) setTasks((data ?? []) as TaskWithSubtasks[])
+    if (!error) {
+      const tasksData = (data ?? []) as TaskWithSubtasks[]
+
+      // Сброс "вчерашних" подзадач: задача снова актуальна, а все галочки стоят
+      const stale = tasksData.filter(
+        (t) =>
+          !isToday(t.last_completed_at) &&
+          t.subtasks.length > 0 &&
+          t.subtasks.every((s) => s.is_completed),
+      )
+      if (stale.length > 0) {
+        await supabase
+          .from('subtasks')
+          .update({ is_completed: false })
+          .in('task_id', stale.map((t) => t.id))
+        for (const t of stale) {
+          t.subtasks = t.subtasks.map((s) => ({ ...s, is_completed: false }))
+        }
+      }
+      setTasks(tasksData)
+    }
     setLoading(false)
   }, [room.id])
 
@@ -47,6 +67,19 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
     await completeTask(task)
     loadTasks()
     onChanged()
+  }
+
+  async function handleToggleSubtask(task: TaskWithSubtasks, subtask: Subtask) {
+    const next = await toggleSubtask(subtask)
+    const updated = task.subtasks.map((s) =>
+      s.id === subtask.id ? { ...s, is_completed: next } : s,
+    )
+    setTasks((prev) => prev.map((t) => (t.id === task.id ? { ...t, subtasks: updated } : t)))
+
+    // Все подзадачи закрыты → задача выполнена
+    if (next && updated.every((s) => s.is_completed)) {
+      await handleComplete(task)
+    }
   }
 
   return (
@@ -92,6 +125,7 @@ export default function RoomScreen({ room, onBack, onChanged }: RoomScreenProps)
             task={task}
             done={isToday(task.last_completed_at)}
             onComplete={() => handleComplete(task)}
+            onToggleSubtask={(s) => handleToggleSubtask(task, s)}
             onEdit={() => {
               setEditingTask(task)
               setModalOpen(true)

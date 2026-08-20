@@ -25,12 +25,19 @@ const FREQUENCY_OPTIONS = [
   { days: 30, label: 'раз в месяц' },
 ]
 
+const MONTHS = [
+  'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+  'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь',
+]
+
 export default function TaskModal({ room, task, onClose, onSaved }: TaskModalProps) {
   const [title, setTitle] = useState(task?.title ?? '')
   const [difficulty, setDifficulty] = useState<Difficulty>(task?.difficulty ?? 'easy')
   const [duration, setDuration] = useState(task?.duration_minutes ?? 10)
   const [frequency, setFrequency] = useState(task?.frequency_days ?? 1)
   const [isSeasonal, setIsSeasonal] = useState(task?.is_seasonal ?? false)
+  const [dueMonth, setDueMonth] = useState<number | null>(task?.due_month ?? null)
+  const [dueDay, setDueDay] = useState(task?.due_day ?? 15)
   const [subtasks, setSubtasks] = useState<SubtaskRow[]>(
     (task?.subtasks ?? []).map((s) => ({ id: s.id, title: s.title })),
   )
@@ -61,6 +68,8 @@ export default function TaskModal({ room, task, onClose, onSaved }: TaskModalPro
       room_id: room.id,
       title: title.trim(),
       difficulty,
+      due_month: dueMonth,
+      due_day: dueMonth !== null ? dueDay : null,
       is_seasonal: isSeasonal,
       duration_minutes: duration,
       frequency_days: frequency,
@@ -201,6 +210,33 @@ export default function TaskModal({ room, task, onClose, onSaved }: TaskModalPro
             Сезонная задача (окна, кондиционер, гардероб)
           </span>
         </label>
+
+        {isSeasonal && (
+          <div className="flex gap-2 mb-5">
+            <select
+              value={dueMonth ?? ''}
+              onChange={(e) => setDueMonth(e.target.value === '' ? null : Number(e.target.value))}
+              className="flex-1 rounded-xl border border-neutral-100 bg-neutral-50 px-3 py-2.5 text-sm text-neutral-900 outline-none focus:border-forest-500"
+            >
+              <option value="">Каждый год, без привязки к дате</option>
+              {MONTHS.map((m, i) => (
+                <option key={m} value={i + 1}>
+                  Каждый год: {m}
+                </option>
+              ))}
+            </select>
+            {dueMonth !== null && (
+              <input
+                type="number"
+                min={1}
+                max={31}
+                value={dueDay}
+                onChange={(e) => setDueDay(Math.min(31, Math.max(1, Number(e.target.value) || 1)))}
+                className="w-20 rounded-xl border border-neutral-100 bg-neutral-50 px-3 py-2.5 text-sm text-neutral-900 outline-none focus:border-forest-500"
+              />
+            )}
+          </div>
+        )}
 
         <div className="flex items-center justify-between mb-2">
           <label className="text-sm font-medium text-neutral-700">Подзадачи</label>

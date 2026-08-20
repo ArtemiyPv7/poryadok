@@ -48,6 +48,60 @@ export function isOverdue(task: Task): boolean {
   return daysSince(task.last_completed_at ?? task.created_at) / task.frequency_days >= 1
 }
 
+// Окно, в течение которого сезонная задача считается просроченной (дней после якоря)
+const SEASONAL_WINDOW_DAYS = 60
+
+// Календарный якорь сезонной задачи (например, 20 мая каждого года)
+export function seasonalAnchorDate(task: Task): Date | null {
+  if (task.due_month == null) return null
+  const day = task.due_day ?? 15
+  const now = new Date()
+  return new Date(now.getFullYear(), task.due_month - 1, day)
+}
+
+// Состояние сезонной задачи: пора ли и сколько дней осталось
+export function seasonalState(task: Task): { due: boolean; daysLeft: number } {
+  // Без якоря — старая логика по периодичности
+  if (task.due_month == null) {
+    return {
+      due: isOverdue(task),
+      daysLeft: Math.ceil(
+        task.frequency_days - daysSince(task.last_completed_at ?? task.created_at),
+      ),
+    }
+  }
+
+  const day = task.due_day ?? 15
+  const now = new Date()
+  const thisYear = new Date(now.getFullYear(), task.due_month - 1, day)
+  const windowEnd = new Date(thisYear.getTime() + SEASONAL_WINDOW_DAYS * 86400000)
+  const daysTo = (d: Date) => Math.ceil((d.getTime() - now.getTime()) / 86400000)
+
+  // До якоря ещё далеко
+  if (now < thisYear) {
+    return { due: false, daysLeft: daysTo(thisYear) }
+  }
+
+  // Идёт окно (20 мая — 19 июля) и задача не выполнена после якоря
+  const doneThisCycle =
+    task.last_completed_at !== null && new Date(task.last_completed_at) >= thisYear
+  if (now <= windowEnd && !doneThisCycle) {
+    return { due: true, daysLeft: 0 }
+  }
+
+  // Выполнено или окно прошло — ждём следующий год
+  const nextYear = new Date(now.getFullYear() + 1, task.due_month - 1, day)
+  return { due: false, daysLeft: daysTo(nextYear) }
+}
+
+export function isSeasonalDue(task: Task): boolean {
+  return seasonalState(task).due
+}
+
+export function seasonalDaysLeft(task: Task): number {
+  return seasonalState(task).daysLeft
+}
+
 // Скоринг задачи (алгоритм v2)
 function scoreTask(
   task: TaskWithSubtasks,
