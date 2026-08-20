@@ -1,2 +1,2 @@
 // Версия приложения — поднимай вручную при крупных обновлениях
-export const APP_VERSION = '1.0.0'
+export const APP_VERSION = '1.2.0'

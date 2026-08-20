@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import { buildScenario, type ScenarioKind } from '../lib/scenarios'
 import { completeTask, isToday, toggleSubtask } from '../lib/daily'
 import { difficultyInfo } from '../lib/difficulty'
-import type { Subtask, TaskWithSubtasks } from '../types'
+import type { Room, Subtask, TaskWithSubtasks } from '../types'
 
 interface ScenarioRunScreenProps {
   kind: ScenarioKind
@@ -20,6 +20,7 @@ export default function ScenarioRunScreen({
   onBack,
 }: ScenarioRunScreenProps) {
   const [tasks, setTasks] = useState<TaskWithSubtasks[]>([])
+  const [rooms, setRooms] = useState<Room[]>([])
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
@@ -27,7 +28,10 @@ export default function ScenarioRunScreen({
   const load = useCallback(async () => {
     setLoading(true)
     setDoneIds(new Set())
-    const res = await buildScenario(kind)
+    const [res, roomsRes] = await Promise.all([
+      buildScenario(kind),
+      supabase.from('rooms').select('*'),
+    ])
     const loaded = res.tasks
 
     // Сброс "вчерашних" подзадач: задача снова актуальна, а все галочки стоят
@@ -47,6 +51,7 @@ export default function ScenarioRunScreen({
       }
     }
 
+    setRooms((roomsRes.data ?? []) as Room[])
     setTasks(loaded)
     setLoading(false)
   }, [kind])
@@ -81,6 +86,8 @@ export default function ScenarioRunScreen({
       await handleComplete(task)
     }
   }
+
+  const roomName = (id: string) => rooms.find((r) => r.id === id)?.name ?? ''
 
   const remaining = tasks.filter((t) => !doneIds.has(t.id))
   const remainingMinutes = remaining.reduce((sum, t) => sum + t.duration_minutes, 0)
@@ -139,6 +146,7 @@ export default function ScenarioRunScreen({
                     {info.label}
                   </span>
                   <span className="text-[11px] text-neutral-500">{task.duration_minutes} мин</span>
+                  <span className="text-[11px] text-forest-700">{roomName(task.room_id)}</span>
                   {hasSubtasks && (
                     <span className="text-[11px] text-neutral-500 flex items-center gap-1">
                       <ListChecks size={12} />{' '}
